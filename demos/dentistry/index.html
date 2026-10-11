@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мятный берег — стоматология в Новосибирске</title>
+<meta name="description" content="Демо-лендинг стоматологической клиники «Мятный берег», Новосибирск.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0f9e8f; --teal-d:#0a7a6f; --teal-dd:#08453f;
+  --mint:#e6f7f3; --mint-2:#c9eee5; --mint-3:#9fe0d2;
+  --ink:#10302c; --muted:#5b726e; --line:#dcebe7;
+  --bg:#ffffff; --soft:#f5fbf9; --coral:#ff8a6b;
+  --r:22px; --shadow:0 20px 50px -24px rgba(8,69,63,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:Manrope,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.12}
+h2{font-size:clamp(28px,3.6vw,44px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+.sec{padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.sec-head p{max-width:440px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px;transition:.25s}
+.btn-p{background:var(--teal);color:#fff;box-shadow:0 12px 28px -12px rgba(15,158,143,.7)}
+.btn-p:hover{background:var(--teal-d);transform:translateY(-2px)}
+.btn-g{background:#fff;border:1.5px solid var(--line)}
+.btn-g:hover{border-color:var(--teal);color:var(--teal)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:.3s}
+header.scrolled{border-color:var(--line);box-shadow:0 8px 30px -20px rgba(8,69,63,.25)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Unbounded;font-weight:600;font-size:18px}
+.logo small{display:block;font-family:Manrope;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.04em}
+.menu{display:flex;gap:30px;font-weight:600;font-size:15px}
+.menu a{position:relative;color:#2c4a46}
+.menu a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--teal);transition:.25s}
+.menu a:hover::after{width:100%}
+.nav-r{display:flex;align-items:center;gap:18px}
+.phone{font-weight:700;font-size:15px;white-space:nowrap}
+.nav .btn{padding:12px 22px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:var(--mint);align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);transition:.3s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.open .burger span{background:transparent}
+.open .burger span::before{top:0;transform:rotate(45deg)}
+.open .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;padding:70px 0 100px;overflow:hidden;background:radial-gradient(900px 500px at 85% 10%,var(--mint) 0,transparent 60%),radial-gradient(600px 400px at 0% 100%,#f0faf7 0,transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:600;color:var(--muted);margin-bottom:26px}
+.badge b{background:var(--mint);color:var(--teal-d);padding:4px 10px;border-radius:999px;font-size:12px}
+.hero h1{font-size:clamp(32px,4.4vw,58px);margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--teal);position:relative;white-space:nowrap}
+.hero h1 em svg{position:absolute;left:0;bottom:-10px;width:100%;height:14px}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:520px;margin-bottom:36px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.stats{display:flex;gap:40px;flex-wrap:wrap}
+.stats div b{display:block;font-family:Unbounded;font-size:30px;font-weight:600;color:var(--teal-dd)}
+.stats div span{font-size:14px;color:var(--muted)}
+.hero-art{position:relative;aspect-ratio:1/1;max-width:540px;justify-self:end;width:100%}
+.hero-art .blob{position:absolute;inset:6%;border-radius:42% 58% 52% 48%/48% 42% 58% 52%;background:linear-gradient(145deg,#bff0e4,#7fd8c6 55%,#3dbba8);animation:morph 14s ease-in-out infinite;box-shadow:inset 0 -30px 60px rgba(8,69,63,.15)}
+@keyframes morph{50%{border-radius:56% 44% 40% 60%/40% 60% 40% 60%}}
+.hero-art svg.tooth{position:absolute;left:29%;top:22%;width:42%;height:auto;filter:drop-shadow(0 30px 30px rgba(8,69,63,.25));animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+.chip{position:absolute;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;animation:float 7s ease-in-out infinite}
+.chip i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--mint);font-style:normal}
+.chip small{display:block;color:var(--muted);font-weight:500;font-size:12px}
+.chip.c1{left:-4%;top:4%;animation-delay:-2s}
+.chip.c2{right:-6%;top:44%;animation-delay:-4s}
+.chip.c3{left:-2%;bottom:3%;animation-delay:-1s}
+.sparkle{position:absolute;color:#fff;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2;transform:scale(.6)}}
+
+/* trust strip */
+.strip{background:var(--teal-dd);color:#d7f3ec;padding:22px 0}
+.strip .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-weight:600;font-size:15px}
+.strip span{display:flex;align-items:center;gap:10px}
+.strip span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint-3)}
+
+/* services */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding:6px;background:var(--soft);border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%}
+.tab{padding:12px 22px;border-radius:999px;font-weight:700;font-size:15px;color:var(--muted);transition:.25s}
+.tab:hover{color:var(--ink)}
+.tab.on{background:#fff;color:var(--teal-d);box-shadow:0 6px 18px -8px rgba(8,69,63,.3)}
+.panel{display:none;grid-template-columns:repeat(3,1fr);gap:20px;animation:fade .45s ease}
+.panel.on{display:grid}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+.svc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:14px;transition:.3s;position:relative;overflow:hidden}
+.svc:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--mint-2)}
+.svc .ic{width:54px;height:54px;border-radius:16px;background:var(--mint);display:grid;place-items:center}
+.svc h3{font-size:19px}
+.svc p{color:var(--muted);font-size:15px;flex:1}
+.svc .price{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;border-top:1px dashed var(--line)}
+.svc .price b{font-family:Unbounded;font-size:20px;font-weight:600}
+.svc .price span{font-size:13px;color:var(--muted)}
+.svc.hot::after{content:"Популярно";position:absolute;top:22px;right:22px;font-size:12px;font-weight:700;background:#fff1ec;color:#d9573a;padding:5px 10px;border-radius:999px}
+
+/* doctors */
+.doctors{background:var(--soft)}
+.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.doc{background:#fff;border-radius:var(--r);padding:26px;border:1px solid var(--line);transition:.3s;text-align:left}
+.doc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.ava{width:100%;aspect-ratio:1/1;border-radius:18px;position:relative;overflow:hidden;margin-bottom:20px;display:grid;place-items:center}
+.ava b{font-family:Unbounded;font-size:56px;font-weight:600;color:#fff;position:relative;z-index:2;letter-spacing:-.02em}
+.ava::before{content:"";position:absolute;width:140%;height:140%;background:repeating-radial-gradient(circle at 30% 120%,rgba(255,255,255,.14) 0 2px,transparent 2px 22px)}
+.ava::after{content:"";position:absolute;width:60%;height:60%;right:-14%;top:-14%;border-radius:50%;background:rgba(255,255,255,.18)}
+.a1{background:linear-gradient(140deg,#16b3a1,#0a6b62)}
+.a2{background:linear-gradient(140deg,#5fc9b6,#2a8f9e)}
+.a3{background:linear-gradient(140deg,#1f8aa3,#0f4f63)}
+.a4{background:linear-gradient(140deg,#7fd0a8,#2f9a76)}
+.doc h3{font-size:18px;margin-bottom:6px}
+.doc .role{color:var(--teal-d);font-weight:700;font-size:14px;margin-bottom:12px}
+.doc .exp{display:flex;gap:8px;flex-wrap:wrap}
+.doc .exp span{font-size:12px;font-weight:600;background:var(--mint);color:var(--teal-dd);padding:5px 10px;border-radius:999px}
+
+/* before/after */
+.ba-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.ba{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:16/11;box-shadow:var(--shadow);user-select:none;background:#fdf3ef;touch-action:pan-y}
+.ba svg{position:absolute;inset:0;width:100%;height:100%}
+.ba .after{clip-path:inset(0 0 0 50%)}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;transform:translateX(-50%);box-shadow:0 0 0 1px rgba(0,0,0,.05)}
+.ba .handle i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.2);display:grid;place-items:center;font-style:normal;color:var(--teal);font-weight:800;cursor:ew-resize}
+.ba .lbl{position:absolute;top:18px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(255,255,255,.9);z-index:3}
+.ba .lbl.l{left:18px}.ba .lbl.r{right:18px;color:var(--teal-d)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4}
+.ba-list{display:grid;gap:18px;margin-top:30px}
+.ba-list div{display:flex;gap:16px;align-items:flex-start}
+.ba-list b{flex:none;width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--teal-d);display:grid;place-items:center;font-family:Unbounded;font-size:14px}
+.ba-list p{color:var(--muted);font-size:15px}
+.ba-list strong{display:block;color:var(--ink);font-size:16px}
+.note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* guarantees */
+.guar{background:linear-gradient(160deg,var(--teal-dd),#0b5c54);color:#e4f6f1;border-radius:36px;padding:70px;position:relative;overflow:hidden}
+.guar::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(127,216,198,.35),transparent 65%)}
+.guar h2{color:#fff;max-width:620px;margin:14px 0 16px}
+.guar .eyebrow{color:var(--mint-3)}
+.guar > p{max-width:560px;color:#b8dfd6}
+.g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;position:relative}
+.g{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px;transition:.3s}
+.g:hover{background:rgba(255,255,255,.12);transform:translateY(-4px)}
+.g svg{margin-bottom:16px}
+.g h3{font-family:Manrope;font-weight:800;font-size:17px;color:#fff;margin-bottom:6px;letter-spacing:0}
+.g p{font-size:14px;color:#b8dfd6}
+.lic{display:flex;gap:16px;align-items:center;margin-top:30px;padding:18px 22px;background:rgba(0,0,0,.15);border-radius:16px;font-size:14px;color:#cdeae3;position:relative;flex-wrap:wrap}
+.lic b{color:#fff}
+
+/* reviews */
+.rev-wrap{position:relative}
+.rev-track{display:flex;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.rev-viewport{overflow:hidden;margin:0 -10px}
+.rev{flex:0 0 33.333%;padding:10px}
+.rev-in{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;height:100%;display:flex;flex-direction:column;gap:18px}
+.stars{color:#f5b335;letter-spacing:3px;font-size:18px}
+.rev-in p{flex:1;font-size:16px}
+.who{display:flex;gap:12px;align-items:center}
+.who i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--mint-3),var(--teal))}
+.who small{display:block;color:var(--muted);font-size:13px}
+.rev-ctrl{display:flex;gap:10px;align-items:center}
+.arr{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:.25s;background:#fff}
+.arr:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:28px}
+.dots button{width:8px;height:8px;border-radius:99px;background:var(--mint-2);transition:.3s}
+.dots button.on{width:28px;background:var(--teal)}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq-side p{color:var(--muted);margin:18px 0 28px}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;font-weight:700;font-size:18px}
+.qa button i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--mint);position:relative;transition:.3s}
+.qa button i::before,.qa button i::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:var(--teal-d);transform:translate(-50%,-50%);transition:.3s}
+.qa button i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa.on button i{background:var(--teal)}
+.qa.on button i::before{background:#fff}
+.qa.on button i::after{transform:translate(-50%,-50%) rotate(0);background:#fff}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.qa.on .ans{grid-template-rows:1fr}
+.qa .ans > div{overflow:hidden}
+.qa .ans p{color:var(--muted);padding-bottom:24px;max-width:640px}
+
+/* form */
+.book{background:var(--soft)}
+.book-card{display:grid;grid-template-columns:1fr 1fr;background:#fff;border-radius:36px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.book-l{padding:56px;background:linear-gradient(160deg,var(--mint),#d4f2ea);position:relative;overflow:hidden}
+.book-l h2{margin:14px 0 18px}
+.book-l p{color:#3f5d58;max-width:400px}
+.book-l ul{list-style:none;margin-top:30px;display:grid;gap:14px}
+.book-l li{display:flex;gap:12px;align-items:center;font-weight:600}
+.book-l li::before{content:"✓";width:28px;height:28px;flex:none;border-radius:50%;background:#fff;color:var(--teal);display:grid;place-items:center;font-weight:800;font-size:14px}
+.book-l>*:not(.deco){position:relative;z-index:1}
+.book-l svg.deco{position:absolute;right:-40px;bottom:-40px;width:240px;opacity:.5}
+form{padding:56px;display:grid;gap:18px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:8px;font-size:14px;font-weight:700;color:#2c4a46}
+input,select,textarea{font:inherit;font-size:16px;padding:15px 18px;border-radius:14px;border:1.5px solid var(--line);background:var(--soft);color:var(--ink);transition:.2s;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;box-shadow:0 0 0 4px rgba(15,158,143,.12)}
+textarea{resize:vertical;min-height:96px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted);font-size:13px;grid-template-columns:none}
+.agree input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--teal)}
+.ok{display:none;padding:18px;border-radius:14px;background:var(--mint);color:var(--teal-dd);font-weight:700}
+form.sent .ok{display:block;animation:fade .4s}
+.err{border-color:#ef7d6a!important}
+
+/* footer */
+footer{background:#0b2724;color:#a9c7c1;padding:70px 0 30px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px}
+footer .logo{color:#fff;margin-bottom:16px}
+footer .logo small{color:#7fa59e}
+footer h4{color:#fff;font-size:15px;margin-bottom:16px}
+footer ul{list-style:none;display:grid;gap:10px;font-size:15px}
+footer a:hover{color:#fff}
+.map{border-radius:18px;overflow:hidden;height:150px;position:relative;background:#123a35}
+.f-bot{display:flex;justify-content:space-between;gap:20px;padding-top:26px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;flex-wrap:wrap}
+.demo{opacity:.6}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:1100px){
+  .menu{gap:20px}
+  .phone{display:none}
+  .docs{grid-template-columns:repeat(2,1fr)}
+  .g-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:920px){
+  .menu{position:fixed;top:76px;left:0;right:0;flex-direction:column;gap:0;background:#fff;padding:10px 24px 24px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.35s;box-shadow:0 20px 40px -20px rgba(0,0,0,.2);z-index:-1}
+  .menu a{padding:14px 0;border-bottom:1px solid var(--line);font-size:17px}
+  .open .menu{transform:none}
+  .burger{display:flex}
+  .hero-grid,.ba-grid,.faq-grid,.book-card{grid-template-columns:1fr}
+  .hero-art{justify-self:center;max-width:440px}
+  .panel{grid-template-columns:repeat(2,1fr)}
+  .rev{flex-basis:50%}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .sec{padding:76px 0}
+  .nav{height:66px}
+  html{scroll-padding-top:70px}
+  .menu{top:66px}
+  .nav .btn{display:none}
+  .logo{font-size:16px}
+  .hero{padding:36px 0 70px}
+  .hero p.lead{font-size:17px}
+  .hero-cta .btn{flex:1 1 100%}
+  .stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:12px}
+  .stats div b{font-size:22px}
+  .stats div span{font-size:12px}
+  .chip{padding:10px 12px;font-size:12px;border-radius:14px}
+  .chip i{width:32px;height:32px;border-radius:10px}
+  .chip.c1{left:0;top:8%}
+  .chip.c2{right:0;top:auto;bottom:8%}
+  .svc{padding:22px;gap:10px}
+  .g-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .g{padding:18px}
+  .g h3{font-size:15px}
+  .g p{font-size:13px}
+  .chip.c3{display:none}
+  .tabs{border-radius:20px;width:100%}
+  .tab{flex:1 1 auto;padding:10px 14px;font-size:14px}
+  .panel{grid-template-columns:1fr}
+  .docs{grid-template-columns:1fr 1fr;gap:12px}
+  .doc{padding:14px}
+  .ava b{font-size:36px}
+  .doc h3{font-size:15px}
+  .doc .role{font-size:12px}
+  .doc .exp span{font-size:11px;padding:4px 8px}
+  .guar{padding:40px 22px;border-radius:26px}
+  .rev{flex-basis:100%}
+  .book-l,form{padding:32px 22px}
+  .book-card{border-radius:26px}
+  .book-l svg.deco{width:150px;opacity:.35}
+  .f2{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .qa button{font-size:16px}
+  .strip .wrap{justify-content:flex-start;gap:12px 22px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Мятный берег">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#0f9e8f"/><path d="M12 13c2.5-2.2 5.4-1.3 8 0 2.6-1.3 5.5-2.2 8 0 2.4 2.2 1.4 6.4.4 9.3-.9 2.6-1.5 6.7-3.6 6.7-2 0-1.9-5.4-4.8-5.4s-2.8 5.4-4.8 5.4c-2.1 0-2.7-4.1-3.6-6.7-1-2.9-2-7.1.4-9.3z" fill="#fff"/></svg>
+      <span>Мятный берег<small>стоматология · Новосибирск</small></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#services">Услуги</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#results">Результаты</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="nav-r">
+      <a class="phone" href="tel:+73830000000">+7 (383) 000-00-00</a>
+      <a href="#book" class="btn btn-p">Записаться</a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <div class="badge"><b>−20%</b> на первичную консультацию в октябре</div>
+      <h1>Спокойное лечение и&nbsp;<em>честная улыбка<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 50 2, 150 2, 198 9" stroke="#9fe0d2" stroke-width="5" fill="none" stroke-linecap="round"/></svg></em></h1>
+      <p class="lead">Семейная стоматология на левом берегу. Лечим без боли под микроскопом, объясняем план и фиксируем цену до начала работы.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn btn-p">Записаться на консультацию
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#services" class="btn btn-g">Услуги и цены</a>
+      </div>
+      <div class="stats">
+        <div><b>12 лет</b><span>работаем для вас</span></div>
+        <div><b>18 000+</b><span>довольных пациентов</span></div>
+        <div><b>4.9 ★</b><span>средняя оценка</span></div>
+      </div>
+    </div>
+    <div class="hero-art rv">
+      <div class="blob"></div>
+      <svg class="tooth" viewBox="0 0 200 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3f3ef"/></linearGradient>
+          <linearGradient id="tg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <path d="M40 30c22-20 44-12 60-4 16-8 38-16 60 4 22 20 12 58 4 84-8 26-14 86-36 86-20 0-18-52-28-62-10 10-8 62-28 62-22 0-28-60-36-86-8-26-18-64 4-84z" fill="url(#tg)"/>
+        <path d="M54 44c12-10 26-8 36-2" stroke="url(#tg2)" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <circle cx="78" cy="96" r="7" fill="#10302c"/><circle cx="122" cy="96" r="7" fill="#10302c"/>
+        <circle cx="80.5" cy="93.5" r="2.2" fill="#fff"/><circle cx="124.5" cy="93.5" r="2.2" fill="#fff"/>
+        <path d="M86 116c8 9 20 9 28 0" stroke="#10302c" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="64" cy="114" rx="9" ry="5" fill="#ffb4a2" opacity=".6"/><ellipse cx="136" cy="114" rx="9" ry="5" fill="#ffb4a2" opacity=".6"/>
+      </svg>
+      <svg class="sparkle" style="right:16%;top:12%" width="28" height="28" viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="currentColor"/></svg>
+      <svg class="sparkle" style="left:20%;top:30%;animation-delay:-1.5s" width="16" height="16" viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="currentColor"/></svg>
+      <div class="chip c1"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><div>Гарантия до 5 лет<small>на имплантацию</small></div></div>
+      <div class="chip c2"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></i><div>Приём без очередей<small>по точному времени</small></div></div>
+      <div class="chip c3"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21h12M9 17h6M12 17v-3M10 4l4 0M11 4v6a3 3 0 106 0"/><circle cx="12" cy="10" r="0"/></svg></i><div>Лечение под микроскопом<small>в каждом кабинете</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"><div class="wrap">
+  <span>Лицензия Минздрава</span><span>Детский приём с 3 лет</span><span>Рассрочка 0% до 12 месяцев</span><span>Работаем без выходных</span>
+</div></div>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Услуги и цены</span><h2 style="margin-top:14px">Всё для здоровья зубов<br>в одной клинике</h2></div>
+      <p>Цены указаны «от» и уточняются после осмотра. Финальную стоимость вы видите в плане лечения до начала работы.</p>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-tab="t1">Терапия</button>
+      <button class="tab" data-tab="t2">Эстетика</button>
+      <button class="tab" data-tab="t3">Имплантация</button>
+      <button class="tab" data-tab="t4">Детям</button>
+    </div>
+    <div class="panel on" id="t1"></div>
+    <div class="panel" id="t2"></div>
+    <div class="panel" id="t3"></div>
+    <div class="panel" id="t4"></div>
+  </div>
+</section>
+
+<section class="sec doctors" id="doctors">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Команда</span><h2 style="margin-top:14px">Врачи, которым<br>доверяют семьи</h2></div>
+      <p>Каждый врач ежегодно проходит повышение квалификации и ведёт пациента от первого осмотра до контрольного визита.</p>
+    </div>
+    <div class="docs">
+      <article class="doc rv"><div class="ava a1"><b>АК</b></div><h3>Анна Корнилова</h3><div class="role">Главный врач, терапевт</div><div class="exp"><span>стаж 15 лет</span><span>микроскоп</span></div></article>
+      <article class="doc rv"><div class="ava a2"><b>ИВ</b></div><h3>Илья Вершинин</h3><div class="role">Хирург-имплантолог</div><div class="exp"><span>стаж 11 лет</span><span>2 000+ имплантов</span></div></article>
+      <article class="doc rv"><div class="ava a3"><b>МС</b></div><h3>Марина Сурикова</h3><div class="role">Ортодонт</div><div class="exp"><span>стаж 9 лет</span><span>элайнеры</span></div></article>
+      <article class="doc rv"><div class="ava a4"><b>ДЛ</b></div><h3>Дарья Лесина</h3><div class="role">Детский стоматолог</div><div class="exp"><span>стаж 7 лет</span><span>с 3 лет</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="results">
+  <div class="wrap ba-grid">
+    <div class="ba rv" id="ba">
+      <!-- BEFORE -->
+      <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="640" height="440" fill="#f6e9e4"/>
+        <path d="M60 150 Q320 60 580 150 Q560 300 320 340 Q80 300 60 150Z" fill="#c9626a"/>
+        <path d="M90 168 Q320 110 550 168 Q530 280 320 312 Q110 280 90 168Z" fill="#7d2d3a"/>
+        <g id="bt">
+          <rect x="128" y="160" width="58" height="76" rx="22" fill="#e8d6a8" transform="rotate(-8 157 198)"/>
+          <rect x="190" y="150" width="64" height="88" rx="22" fill="#e2cf9a" transform="rotate(5 222 194)"/>
+          <rect x="256" y="146" width="62" height="96" rx="22" fill="#e9d9ae"/>
+          <rect x="324" y="146" width="62" height="92" rx="22" fill="#dcc890" transform="rotate(-6 355 192)"/>
+          <rect x="392" y="152" width="60" height="82" rx="22" fill="#e6d3a2" transform="rotate(9 422 193)"/>
+          <rect x="456" y="162" width="54" height="72" rx="22" fill="#e0cc96"/>
+          <circle cx="288" cy="210" r="7" fill="#9c8650"/><circle cx="420" cy="196" r="5" fill="#9c8650"/>
+        </g>
+        <g fill="#e6d3a2">
+          <rect x="170" y="252" width="52" height="56" rx="20"/><rect x="228" y="256" width="56" height="62" rx="20" transform="rotate(7 256 287)"/>
+          <rect x="292" y="258" width="54" height="62" rx="20"/><rect x="354" y="256" width="54" height="60" rx="20" transform="rotate(-8 381 286)"/>
+          <rect x="416" y="252" width="50" height="54" rx="20"/>
+        </g>
+      </svg>
+      <!-- AFTER -->
+      <svg class="after" id="baAfter" viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs><linearGradient id="wt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6f4"/></linearGradient></defs>
+        <rect width="640" height="440" fill="#e6f7f3"/>
+        <path d="M60 150 Q320 60 580 150 Q560 300 320 340 Q80 300 60 150Z" fill="#e07d82"/>
+        <path d="M90 168 Q320 110 550 168 Q530 280 320 312 Q110 280 90 168Z" fill="#8a3442"/>
+        <g fill="url(#wt)">
+          <rect x="128" y="160" width="58" height="80" rx="22"/><rect x="190" y="150" width="62" height="92" rx="22"/>
+          <rect x="256" y="146" width="62" height="98" rx="22"/><rect x="322" y="146" width="62" height="98" rx="22"/>
+          <rect x="388" y="150" width="62" height="92" rx="22"/><rect x="454" y="160" width="58" height="80" rx="22"/>
+          <rect x="170" y="252" width="52" height="56" rx="20"/><rect x="228" y="256" width="56" height="62" rx="20"/>
+          <rect x="290" y="258" width="58" height="62" rx="20"/><rect x="354" y="256" width="56" height="62" rx="20"/>
+          <rect x="416" y="252" width="52" height="56" rx="20"/>
+        </g>
+        <g fill="#fff" opacity=".9"><rect x="268" y="156" width="10" height="34" rx="5"/><rect x="334" y="156" width="10" height="34" rx="5"/><rect x="202" y="162" width="9" height="28" rx="4.5"/></g>
+        <path d="M560 70l6 20 20 6-20 6-6 20-6-20-20-6 20-6z" fill="#0f9e8f"/>
+        <path d="M86 360l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" fill="#0f9e8f" opacity=".6"/>
+      </svg>
+      <span class="lbl l">До</span><span class="lbl r">После</span>
+      <div class="handle" id="baH"><i>⟷</i></div>
+      <input type="range" min="0" max="100" value="50" id="baR" aria-label="Сравнить до и после">
+    </div>
+    <div class="rv">
+      <span class="eyebrow">До / после</span>
+      <h2 style="margin:14px 0 18px">Результат, который видно с первого взгляда</h2>
+      <p style="color:var(--muted)">Перед лечением мы делаем цифровую модель улыбки — вы видите итог заранее и вместе с врачом выбираете форму и оттенок.</p>
+      <div class="ba-list">
+        <div><b>01</b><p><strong>Профгигиена</strong>Снимаем налёт и камень, полируем эмаль.</p></div>
+        <div><b>02</b><p><strong>Выравнивание</strong>Элайнеры или брекеты по цифровому плану.</p></div>
+        <div><b>03</b><p><strong>Эстетика</strong>Отбеливание и виниры под ваш цвет кожи.</p></div>
+      </div>
+      <p class="note">Иллюстрация-концепт. Потяните ползунок, чтобы сравнить.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="guar rv">
+      <span class="eyebrow">Лицензии и гарантии</span>
+      <h2>Отвечаем за результат — официально и письменно</h2>
+      <p>Гарантийные обязательства закреплены в договоре. Если что-то пойдёт не так, исправим бесплатно.</p>
+      <div class="g-grid">
+        <div class="g"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9fe0d2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><h3>До 5 лет</h3><p>гарантия на импланты и коронки</p></div>
+        <div class="g"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9fe0d2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><h3>Фиксированная смета</h3><p>цена не меняется в процессе</p></div>
+        <div class="g"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9fe0d2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Стерильность</h3><p>автоклав класса B, контроль каждой закладки</p></div>
+        <div class="g"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9fe0d2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg><h3>Сертификаты</h3><p>оригинальные материалы с паспортами</p></div>
+      </div>
+      <div class="lic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg><span><b>Лицензия № ЛО-00-00-000000</b> — номер-заглушка для демо. Налоговый вычет за лечение: выдаём справки.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Отзывы</span><h2 style="margin-top:14px">Что говорят пациенты</h2></div>
+      <div class="rev-ctrl">
+        <button class="arr" id="prev" aria-label="Назад"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="arr" id="next" aria-label="Вперёд"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="rev-viewport rv"><div class="rev-track" id="track"></div></div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="faq-side rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 style="margin-top:14px">Частые вопросы</h2>
+      <p>Не нашли ответ? Позвоните администратору или оставьте заявку — перезвоним в течение 15 минут.</p>
+      <a href="#book" class="btn btn-p">Задать вопрос</a>
+    </div>
+    <div class="faq rv" id="faqList"></div>
+  </div>
+</section>
+
+<section class="sec book" id="book">
+  <div class="wrap">
+    <div class="book-card rv">
+      <div class="book-l">
+        <span class="eyebrow">Запись</span>
+        <h2>Записаться на консультацию</h2>
+        <p>Осмотр, 3D-снимок и план лечения с ценой — за один визит около 40 минут.</p>
+        <ul><li>Консультация — 990 ₽ вместо 1 290 ₽</li><li>Перезвоним за 15 минут</li><li>Удобное время, в том числе выходные</li></ul>
+        <svg class="deco" viewBox="0 0 200 220" aria-hidden="true"><path d="M40 30c22-20 44-12 60-4 16-8 38-16 60 4 22 20 12 58 4 84-8 26-14 86-36 86-20 0-18-52-28-62-10 10-8 62-28 62-22 0-28-60-36-86-8-26-18-64 4-84z" fill="#fff"/></svg>
+      </div>
+      <form id="form" novalidate>
+        <div class="f2">
+          <label>Имя<input name="name" placeholder="Как к вам обращаться" required></label>
+          <label>Телефон<input name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></label>
+        </div>
+        <div class="f2">
+          <label>Направление<select name="dir"><option>Терапия</option><option>Эстетика</option><option>Имплантация</option><option>Ортодонтия</option><option>Детский приём</option></select></label>
+          <label>Удобная дата<input name="date" type="date"></label>
+        </div>
+        <label>Комментарий<textarea name="msg" placeholder="Что беспокоит? (необязательно)"></textarea></label>
+        <label class="agree"><input type="checkbox" checked required> Согласен на обработку персональных данных (демо — данные никуда не отправляются)</label>
+        <button class="btn btn-p" type="submit">Отправить заявку</button>
+        <div class="ok" role="status">Спасибо! Заявка принята — администратор перезвонит в течение 15 минут.</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="logo"><svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="#0f9e8f"/><path d="M12 13c2.5-2.2 5.4-1.3 8 0 2.6-1.3 5.5-2.2 8 0 2.4 2.2 1.4 6.4.4 9.3-.9 2.6-1.5 6.7-3.6 6.7-2 0-1.9-5.4-4.8-5.4s-2.8 5.4-4.8 5.4c-2.1 0-2.7-4.1-3.6-6.7-1-2.9-2-7.1.4-9.3z" fill="#fff"/></svg><span>Мятный берег<small>стоматология · Новосибирск</small></span></div>
+        <p style="font-size:14px;max-width:280px">Семейная стоматология. Терапия, эстетика, имплантация и детский приём.</p>
+      </div>
+      <div><h4>Пациентам</h4><ul><li><a href="#services">Услуги и цены</a></li><li><a href="#doctors">Врачи</a></li><li><a href="#faq">Вопросы</a></li><li><a href="#book">Запись</a></li></ul></div>
+      <div><h4>Контакты</h4><ul><li><a href="tel:+73830000000">+7 (383) 000-00-00</a></li><li>ул. Примерная, 00, Новосибирск</li><li>Ежедневно 8:00–21:00</li></ul></div>
+      <div class="map" aria-hidden="true">
+        <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+          <rect width="300" height="150" fill="#123a35"/>
+          <path d="M-10 110 C 60 90, 120 140, 200 100 S 290 60, 320 70" stroke="#1d5e57" stroke-width="22" fill="none"/>
+          <g stroke="#1a4b45" stroke-width="6"><path d="M0 40H300M0 80H300M60 0V150M150 0V150M240 0V150"/></g>
+          <g stroke="#215750" stroke-width="2"><path d="M0 20H300M0 60H300M30 0V150M110 0V150M200 0V150"/></g>
+          <circle cx="150" cy="60" r="18" fill="#0f9e8f" opacity=".25"/>
+          <path d="M150 38c-8 0-14 6-14 14 0 10 14 22 14 22s14-12 14-22c0-8-6-14-14-14z" fill="#0f9e8f"/><circle cx="150" cy="52" r="5" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+    <div class="f-bot"><span>© 2026 «Мятный берег». Имеются противопоказания, необходима консультация специалиста.</span><span class="demo">Демо-проект · разработка: Степан</span></div>
+  </div>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// header
+const hdr=$('header');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10),{passive:true});
+$('#burger').onclick=()=>hdr.classList.toggle('open');
+$$('.menu a').forEach(a=>a.onclick=()=>hdr.classList.remove('open'));
+
+// services
+const ic={
+ tooth:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c2 0 3 1 5 1s3-1 5-1c3 0 4 3 3 7-.7 2.6-1.3 11-3.5 11-1.8 0-1.5-6-4.5-6s-2.7 6-4.5 6C5.3 21 4.7 12.6 4 10 3 6 4 3 7 3z"/></svg>',
+ spark:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>',
+ screw:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="1.9" stroke-linecap="round"><path d="M7 3h10l-1 4H8zM9 9h6M8.5 12h7M9 15h6M10 18h4M12 7v14"/></svg>',
+ kid:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a7a6f" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14c1.8 2 5.2 2 7 0M9 9.5h.01M15 9.5h.01"/></svg>'
+};
+const S={
+ t1:[['tooth','Лечение кариеса','Пломба светового отверждения, анестезия включена.','3 500 ₽','за зуб',1],['tooth','Лечение каналов','Под микроскопом, с контрольным снимком.','7 900 ₽','за канал'],['spark','Профгигиена','Ультразвук, Air Flow, полировка и фторирование.','4 200 ₽','всё включено',1],['tooth','Реставрация','Восстановление формы и цвета зуба композитом.','6 500 ₽','за зуб'],['tooth','3D-снимок КТ','Компьютерная томография челюсти с описанием.','2 900 ₽','за снимок'],['spark','Консультация','Осмотр, снимок и план лечения с ценой.','990 ₽','вместо 1 290 ₽']],
+ t2:[['spark','Отбеливание','Кабинетное отбеливание за один визит до 8 тонов.','18 000 ₽','обе челюсти',1],['tooth','Керамические виниры','Ультратонкие, с цифровым дизайном улыбки.','32 000 ₽','за единицу'],['tooth','Элайнеры','Прозрачные капы, план лечения в 3D.','95 000 ₽','весь курс',1],['tooth','Брекеты','Керамические или металлические системы.','65 000 ₽','одна челюсть'],['spark','Цифровой дизайн улыбки','Примерка будущей улыбки до начала работ.','5 000 ₽','засчитаем в лечение'],['tooth','Коронка из циркония','Прочная и естественная на вид.','24 000 ₽','за единицу']],
+ t3:[['screw','Имплант «стандарт»','Установка импланта с гарантией 5 лет.','29 000 ₽','под ключ от 52 000 ₽',1],['screw','Имплант «премиум»','Швейцарские системы с пожизненной гарантией.','45 000 ₽','за имплант'],['screw','Синус-лифтинг','Наращивание костной ткани верхней челюсти.','22 000 ₽','закрытый'],['tooth','Удаление зуба','Атравматичное, включая зубы мудрости.','3 900 ₽','от сложности'],['screw','Все зубы на 4 имплантах','Несъёмный протез за 1–3 дня.','260 000 ₽','одна челюсть'],['tooth','Костная пластика','Подготовка к имплантации при атрофии.','18 000 ₽','за зону']],
+ t4:[['kid','Первый визит-знакомство','Игровая адаптация, осмотр без лечения.','0 ₽','бесплатно',1],['kid','Лечение молочных зубов','Под мягкой седацией по показаниям.','2 900 ₽','за зуб'],['kid','Герметизация фиссур','Защита жевательных зубов от кариеса.','1 800 ₽','за зуб'],['kid','Детская гигиена','Чистка, фторирование, урок по уходу.','2 400 ₽','всё включено'],['kid','Пластинки и трейнеры','Раннее ортодонтическое лечение.','14 000 ₽','за аппарат'],['kid','Серебрение','Остановка кариеса у малышей.','600 ₽','за зуб']]
+};
+for(const k in S){$('#'+k).innerHTML=S[k].map(([i,t,d,p,u,h])=>`<article class="svc${h?' hot':''}"><div class="ic">${ic[i]}</div><h3>${t}</h3><p>${d}</p><div class="price"><b>от ${p}</b><span>${u}</span></div></article>`).join('')}
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('on',x===b));$$('.panel').forEach(p=>p.classList.toggle('on',p.id===b.dataset.tab))});
+
+// before/after
+const r=$('#baR'),aft=$('#baAfter'),h=$('#baH');
+const setBA=v=>{aft.style.clipPath=`inset(0 0 0 ${v}%)`;h.style.left=v+'%'};
+r.oninput=()=>setBA(r.value);
+
+// reviews
+const R=[['Екатерина','Лечение каналов','Боялась стоматологов с детства, но здесь всё объяснили и сделали действительно без боли. Анна Сергеевна — врач от бога.'],['Михаил','Имплантация','Поставил два импланта. Смету озвучили сразу, в итоге ни рубля сверху. Через полгода всё отлично.'],['Ольга','Детский приём','Сын сам просится к Дарье Андреевне! Мультики на потолке и подарки после приёма — гениально.'],['Сергей','Профгигиена','Удобно, что можно записаться на 8 утра перед работой. Чисто, быстро, вежливо.'],['Алина','Элайнеры','За 10 месяцев выровняли зубы, никто вокруг даже не заметил кап. Очень довольна результатом.'],['Владимир','Коронки','Приятно, что показали на экране, какой будет результат. Коронки не отличить от своих зубов.']];
+$('#track').innerHTML=R.map(([n,s,t])=>`<div class="rev"><div class="rev-in"><div class="stars">★★★★★</div><p>«${t}»</p><div class="who"><i>${n[0]}</i><div><b>${n}</b><small>${s}</small></div></div></div></div>`).join('');
+let idx=0;
+const per=()=>innerWidth<=600?1:innerWidth<=920?2:3;
+const pages=()=>R.length-per()+1;
+function drawDots(){$('#dots').innerHTML=Array.from({length:pages()},(_,i)=>`<button aria-label="Слайд ${i+1}" class="${i===idx?'on':''}"></button>`).join('');$$('#dots button').forEach((b,i)=>b.onclick=()=>go(i))}
+function go(i){idx=(i+pages())%pages();$('#track').style.transform=`translateX(-${idx*100/per()}%)`;drawDots()}
+$('#prev').onclick=()=>{go(idx-1);reset()};$('#next').onclick=()=>{go(idx+1);reset()};
+let timer;const reset=()=>{clearInterval(timer);timer=setInterval(()=>go(idx+1),7000)};
+addEventListener('resize',()=>go(Math.min(idx,pages()-1)));
+go(0);reset();
+let sx=null;$('#track').addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+$('#track').addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40){go(idx+(d<0?1:-1));reset()}sx=null});
+
+// faq
+const F=[['Больно ли лечить зубы?','Нет. Мы используем современные анестетики и аппликационное обезболивание перед уколом. По показаниям доступна седация — лёгкий медикаментозный сон.'],['Сколько стоит консультация?','Первичная консультация со снимком и планом лечения — 990 ₽. Если вы продолжаете лечение у нас, сумма засчитывается в стоимость.'],['Можно ли лечиться в рассрочку?','Да, оформляем рассрочку на 6 или 12 месяцев без переплаты прямо в клинике за 10 минут.'],['С какого возраста принимаете детей?','С 3 лет. Первый визит — бесплатное знакомство с клиникой и врачом в игровой форме.'],['Даёте ли вы гарантию?','Да. Гарантия фиксируется в договоре: на пломбы — 1 год, на коронки и импланты — до 5 лет.'],['Выдаёте документы для налогового вычета?','Да, справку об оплате медицинских услуг и копию лицензии подготовим за 3 рабочих дня.']];
+$('#faqList').innerHTML=F.map(([q,a],i)=>`<div class="qa${i===0?' on':''}"><button aria-expanded="${i===0}">${q}<i></i></button><div class="ans"><div><p>${a}</p></div></div></div>`).join('');
+$$('.qa button').forEach(b=>b.onclick=()=>{const q=b.parentElement,o=!q.classList.contains('on');$$('.qa').forEach(x=>{x.classList.remove('on');x.firstElementChild.setAttribute('aria-expanded','false')});if(o){q.classList.add('on');b.setAttribute('aria-expanded','true')}});
+
+// form
+const f=$('#form');
+f.date.min=new Date().toISOString().slice(0,10);
+f.phone.addEventListener('input',e=>{let d=e.target.value.replace(/\D/g,'').replace(/^[78]/,'').slice(0,10);let o='+7';if(d.length)o+=' ('+d.slice(0,3);if(d.length>=3)o+=') '+d.slice(3,6);if(d.length>=6)o+='-'+d.slice(6,8);if(d.length>=8)o+='-'+d.slice(8,10);e.target.value=o});
+f.onsubmit=e=>{e.preventDefault();let ok=true;[f.name,f.phone].forEach(i=>{const bad=i===f.phone?i.value.replace(/\D/g,'').length<11:!i.value.trim();i.classList.toggle('err',bad);if(bad)ok=false});if(!ok)return;f.classList.add('sent');f.querySelector('button[type=submit]').textContent='Заявка отправлена ✓';};
+
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+</script>
+</body>
+</html>

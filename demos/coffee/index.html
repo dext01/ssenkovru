@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зерно и Пар — кофейня в Новосибирске</title>
+<meta name="description" content="Зерно и Пар — уютная кофейня в Новосибирске: спешелти-кофе, десерты и завтраки весь день. Демо-проект.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f0e6;--cream2:#efe3d3;--paper:#fffaf3;
+  --espresso:#2e211a;--brown:#5a3e2e;--caramel:#c8794a;--caramel2:#e09a68;
+  --sage:#7f8f6d;--muted:#7a6a5d;--line:#e4d6c4;--r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--cream);color:var(--espresso);font-family:Rubik,system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Lora,Georgia,serif;font-weight:600;line-height:1.12}
+h2{font-size:clamp(32px,4.4vw,50px)}
+h2 em,h1 em{font-style:italic;color:var(--caramel)}
+.tag{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cream2);color:var(--brown);font-size:13px;font-weight:500;letter-spacing:.03em}
+section{padding:100px 0}
+.sec-head{text-align:center;max-width:620px;margin:0 auto 50px}
+.sec-head h2{margin-top:16px}
+.sec-head p{color:var(--muted);margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:500;font-size:15px;transition:.3s;cursor:pointer;border:0;font-family:inherit}
+.btn-dark{background:var(--espresso);color:var(--cream)}
+.btn-dark:hover{background:var(--caramel);transform:translateY(-2px)}
+.btn-line{border:1.5px solid var(--espresso);color:var(--espresso)}
+.btn-line:hover{background:var(--espresso);color:var(--cream)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(247,240,230,.85);backdrop-filter:blur(14px);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 8px 30px -18px rgba(46,33,26,.4)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Lora,serif;font-weight:700;font-size:22px}
+.logo i{font-style:italic;color:var(--caramel);font-weight:500}
+.nav ul{display:flex;gap:30px;list-style:none;font-size:15px}
+.nav ul a{position:relative;padding:4px 0}
+.nav ul a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--caramel);transition:.3s;border-radius:2px}
+.nav ul a:hover::after{right:0}
+.nav .btn{padding:11px 22px}
+.burger{display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:var(--espresso);border-radius:2px;transition:.3s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:25px}
+.menu-open .burger span:nth-child(1){top:20px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){top:20px;transform:rotate(-45deg)}
+
+/* hero */
+.hero{padding:50px 0 90px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(42px,6vw,80px);margin:22px 0 22px;letter-spacing:-.01em}
+.hero .lead{font-size:18px;color:var(--muted);max-width:480px}
+.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap}
+.hero-meta div{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted)}
+.hero-meta b{display:block;color:var(--espresso);font-size:15px;font-weight:500}
+.hero-meta .ic{width:44px;height:44px;border-radius:14px;background:var(--paper);display:grid;place-items:center;box-shadow:0 6px 18px -10px rgba(46,33,26,.4)}
+.hero-art{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.blob{position:absolute;inset:4%;background:linear-gradient(145deg,#e7b48c,#c8794a);border-radius:46% 54% 58% 42%/45% 42% 58% 55%;animation:morph 12s ease-in-out infinite}
+@keyframes morph{50%{border-radius:58% 42% 40% 60%/55% 60% 40% 45%}}
+.hero-art svg.cup{position:absolute;inset:0;width:100%;height:100%}
+.steam path{stroke-dasharray:6 10;animation:steam 3s linear infinite}
+.steam path:nth-child(2){animation-delay:-1s}.steam path:nth-child(3){animation-delay:-2s}
+@keyframes steam{to{stroke-dashoffset:-64}}
+.chip{position:absolute;background:var(--paper);border-radius:18px;padding:12px 16px;box-shadow:0 18px 40px -18px rgba(46,33,26,.5);font-size:13px;display:flex;align-items:center;gap:10px;animation:float 6s ease-in-out infinite}
+.chip b{display:block;font-size:15px}
+.chip.c1{top:10%;left:-2%}
+.chip.c2{bottom:12%;right:-2%;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-10px)}}
+.marquee{background:var(--espresso);color:var(--cream);overflow:hidden;padding:18px 0;font-family:Lora,serif;font-style:italic;font-size:22px}
+.marquee .track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:marq 30s linear infinite}
+.marquee span{display:flex;align-items:center;gap:40px;padding-right:40px}
+.marquee span::after{content:"✦";color:var(--caramel2);font-style:normal;font-size:16px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* menu */
+.tabs{display:flex;justify-content:center;gap:8px;background:var(--paper);padding:6px;border-radius:999px;width:max-content;margin:0 auto 44px;box-shadow:0 10px 30px -20px rgba(46,33,26,.5);position:relative}
+.tabs button{position:relative;z-index:1;background:none;border:0;padding:12px 26px;border-radius:999px;font:inherit;font-weight:500;cursor:pointer;color:var(--muted);transition:color .3s}
+.tabs button.active{color:var(--cream)}
+.tabs .pill{position:absolute;top:6px;bottom:6px;border-radius:999px;background:var(--espresso);transition:.4s cubic-bezier(.6,.1,.3,1)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.item{background:var(--paper);border-radius:var(--r);padding:24px;display:flex;gap:18px;align-items:center;transition:.35s;border:1px solid transparent;animation:pop .5s both}
+.item:hover{transform:translateY(-4px);border-color:var(--line);box-shadow:0 20px 40px -26px rgba(46,33,26,.5)}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}}
+.item .pic{flex:none;width:76px;height:76px;border-radius:20px;display:grid;place-items:center;background:var(--cream2)}
+.item h3{font-size:19px;font-weight:600}
+.item p{font-size:13.5px;color:var(--muted);margin:2px 0 8px;line-height:1.45}
+.item .price{font-weight:600;color:var(--caramel)}
+.item .new{font-size:11px;background:var(--sage);color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle;font-family:Rubik;font-weight:500}
+
+/* promos */
+.promos{background:var(--paper)}
+.promo-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px}
+.promo{border-radius:28px;padding:34px;position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s}
+.promo:hover{transform:translateY(-5px)}
+.promo h3{font-size:28px;margin:14px 0 10px}
+.promo p{font-size:15px;opacity:.85}
+.promo .big{font-family:Lora,serif;font-size:64px;font-weight:700;line-height:1}
+.p1{background:var(--espresso);color:var(--cream)}
+.p1 .tag{background:rgba(255,255,255,.1);color:var(--caramel2)}
+.p2{background:linear-gradient(150deg,#e9a576,#c8794a);color:#2a1a10}
+.p2 .tag{background:rgba(255,255,255,.35);color:#2a1a10}
+.p3{background:#dfe4d4;color:#2b3324}
+.p3 .tag{background:rgba(255,255,255,.6);color:#3c4a30}
+.stamps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:22px;max-width:360px}
+.stamps i{aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(247,240,230,.35);display:grid;place-items:center}
+.stamps i.on{background:var(--caramel);border:0}
+.stamps i.gift{border:1.5px solid var(--caramel2)}
+.promo .deco{position:absolute;right:-30px;bottom:-30px;opacity:.9}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-art{border-radius:32px;background:linear-gradient(180deg,#f3dcc4,#e8c6a5);aspect-ratio:1.05;position:relative;overflow:hidden}
+.about-art svg{width:100%;height:100%}
+.about h2{margin:16px 0 20px}
+.about p{color:var(--muted);margin-bottom:14px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.nums div{background:var(--paper);border-radius:18px;padding:18px}
+.nums b{display:block;font-family:Lora,serif;font-size:32px;color:var(--caramel);line-height:1.1}
+.nums small{color:var(--muted);font-size:13px}
+
+/* nfc */
+.nfc{padding:0 0 100px}
+.nfc-box{background:var(--espresso);color:var(--cream);border-radius:36px;padding:60px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.nfc-box::before{content:"";position:absolute;width:520px;height:520px;right:-120px;top:-160px;background:radial-gradient(circle,rgba(200,121,74,.35),transparent 65%)}
+.nfc-box h2{color:var(--cream)}
+.nfc-box p{color:#cdbfb2;margin:16px 0 28px;max-width:460px}
+.nfc-box .tag{background:rgba(255,255,255,.08);color:var(--caramel2)}
+.wifi{display:flex;gap:14px;flex-wrap:wrap}
+.wifi div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px 18px;min-width:170px}
+.wifi small{display:block;color:#a8998b;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.wifi b{font-family:ui-monospace,Menlo,monospace;font-size:16px;font-weight:500;letter-spacing:.04em}
+.copy{background:none;border:0;color:var(--caramel2);font:inherit;font-size:13px;cursor:pointer;margin-left:8px}
+.phone-wrap{position:relative;display:grid;place-items:center;min-height:340px;z-index:1}
+.wave{position:absolute;width:140px;height:140px;border-radius:50%;border:2px solid var(--caramel2);opacity:0;animation:wave 2.6s ease-out infinite;top:50%;left:50%;margin:-70px}
+.wave:nth-child(2){animation-delay:.85s}.wave:nth-child(3){animation-delay:1.7s}
+@keyframes wave{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.3);opacity:0}}
+.phone-wrap svg{position:relative;animation:tap 2.6s ease-in-out infinite}
+@keyframes tap{0%,100%{transform:translate(30px,-20px) rotate(12deg)}45%,60%{transform:translate(0,0) rotate(4deg)}}
+
+/* contacts */
+.contacts{background:var(--paper)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.ct-list{display:grid;gap:16px;align-content:start}
+.ct{display:flex;gap:18px;align-items:flex-start;background:var(--cream);border-radius:20px;padding:22px 24px}
+.ct .ic{flex:none;width:48px;height:48px;border-radius:14px;background:var(--paper);display:grid;place-items:center}
+.ct small{display:block;color:var(--muted);font-size:13px}
+.ct b{font-weight:500;font-size:17px}
+.mini-map{border-radius:28px;overflow:hidden;position:relative;min-height:380px;background:#efe6d8}
+.mini-map svg{position:absolute;inset:0;width:100%;height:100%}
+.mini-map .card{position:absolute;left:20px;bottom:20px;right:20px;max-width:300px;background:var(--paper);border-radius:18px;padding:16px 18px;box-shadow:0 18px 40px -20px rgba(46,33,26,.5);font-size:14px}
+.mini-map .card b{font-family:Lora,serif;font-size:17px}
+
+footer{background:var(--espresso);color:#cdbfb2;padding:36px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .logo{color:var(--cream);font-size:19px}
+footer .demo{font-size:12px;opacity:.6}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1024px){
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+  .promo-grid{grid-template-columns:1fr 1fr}
+  .p1{grid-column:1/-1}
+  .about-grid{gap:44px}
+  .nfc-box{padding:44px}
+}
+@media (max-width:860px){
+  .nav ul,.nav>.btn{display:none}
+  .burger{display:block}
+  .menu-open .nav ul{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);padding:6px 24px 20px;box-shadow:0 20px 30px -20px rgba(46,33,26,.4)}
+  .menu-open .nav ul a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:18px}
+  .hero-grid,.about-grid,.ct-grid,.nfc-box{grid-template-columns:1fr}
+  .hero-art{max-width:420px}
+  .about-art{order:-1}
+}
+@media (max-width:560px){
+  section{padding:76px 0}
+  .wrap{padding:0 18px}
+  .hero{padding:24px 0 70px}
+  .hero .lead{font-size:16px}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{justify-content:center}
+  .hero-meta{gap:16px}
+  .chip{padding:9px 12px;font-size:12px}.chip b{font-size:13px}
+  .chip.c1{left:0;top:4%}.chip.c2{right:0;bottom:6%}
+  .menu-grid,.promo-grid{grid-template-columns:1fr}
+  .tabs{width:100%}
+  .tabs button{flex:1;padding:12px 8px}
+  .item{padding:18px}
+  .item .pic{width:64px;height:64px}
+  .promo{padding:28px;min-height:250px}
+  .nums{gap:10px}.nums div{padding:14px}.nums b{font-size:26px}
+  .nfc-box{padding:34px 22px;border-radius:28px}
+  .phone-wrap{min-height:280px}
+  .wifi div{flex:1}
+  .marquee{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#2e211a"/><ellipse cx="18" cy="18" rx="6.5" ry="9.5" transform="rotate(30 18 18)" fill="#c8794a"/><path d="M14.5 11.5c3 2 4.5 5 3.5 7.5s-1 5 3.5 6.5" stroke="#2e211a" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+      <span>Зерно <i>и</i> Пар</span>
+    </a>
+    <ul>
+      <li><a href="#menu">Меню</a></li>
+      <li><a href="#promos">Акции</a></li>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#nfc">Wi-Fi</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <a href="#menu" class="btn btn-dark">Заказать с собой</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Кофейня · Новосибирск · с 7:30</span>
+      <h1>Тёплое место для <em>долгих</em> разговоров</h1>
+      <p class="lead">Обжариваем зерно сами, печём круассаны каждое утро и подаём завтраки весь день. Заходите погреться — у нас всегда пахнет корицей.</p>
+      <div class="hero-cta">
+        <a href="#menu" class="btn btn-dark">Смотреть меню
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#contacts" class="btn btn-line">Как добраться</a>
+      </div>
+      <div class="hero-meta">
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c8794a" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#2e211a" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><b>7:30 — 22:00</b>ежедневно</span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="#c8794a"/></svg></span><span><b>4.9 из 5</b>620 оценок</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="blob"></div>
+      <svg class="cup" viewBox="0 0 500 500" fill="none" aria-hidden="true">
+        <defs>
+          <radialGradient id="latte" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9a77b"/><stop offset=".75" stop-color="#a8683f"/><stop offset="1" stop-color="#6e3f22"/></radialGradient>
+          <linearGradient id="ceramic" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fffaf3"/><stop offset=".7" stop-color="#f3e8da"/><stop offset="1" stop-color="#ddcbb5"/></linearGradient>
+        </defs>
+        <g class="steam" stroke="#fffaf3" stroke-width="5" stroke-linecap="round" opacity=".85">
+          <path d="M210 150c-14-22 14-34 0-58s10-36 0-54"/>
+          <path d="M250 140c-14-22 14-34 0-58s10-36 0-54"/>
+          <path d="M290 150c-14-22 14-34 0-58s10-36 0-54"/>
+        </g>
+        <ellipse cx="250" cy="392" rx="170" ry="34" fill="#2e211a" opacity=".18"/>
+        <ellipse cx="250" cy="372" rx="160" ry="36" fill="url(#ceramic)"/>
+        <ellipse cx="250" cy="366" rx="120" ry="22" fill="#e9dccb"/>
+        <path d="M330 230c50-10 78 20 66 54-10 28-44 36-74 30" stroke="#f3e8da" stroke-width="22" stroke-linecap="round"/>
+        <path d="M140 210h220l-18 120c-4 26-26 42-52 42h-80c-26 0-48-16-52-42z" fill="url(#ceramic)"/>
+        <ellipse cx="250" cy="210" rx="110" ry="30" fill="#fffaf3"/>
+        <ellipse cx="250" cy="212" rx="98" ry="24" fill="url(#latte)"/>
+        <!-- latte art heart/tulip -->
+        <path d="M250 228c-26-6-44-14-44-24 0-9 12-12 22-6 6 3 14 8 22 14 8-6 16-11 22-14 10-6 22-3 22 6 0 10-18 18-44 24z" fill="#fff4e4" opacity=".95"/>
+        <path d="M250 228v-28" stroke="#c18b5f" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- beans -->
+        <g transform="translate(110 420) rotate(-20)"><ellipse rx="16" ry="11" fill="#4a2e1f"/><path d="M-12 0c8-5 16 5 24 0" stroke="#2e1b12" stroke-width="2.5" fill="none"/></g>
+        <g transform="translate(400 430) rotate(30)"><ellipse rx="15" ry="10" fill="#5a3826"/><path d="M-11 0c7-4 15 4 22 0" stroke="#2e1b12" stroke-width="2.5" fill="none"/></g>
+        <g transform="translate(372 455) rotate(-10)"><ellipse rx="12" ry="8" fill="#4a2e1f"/><path d="M-9 0c6-3 12 3 18 0" stroke="#2e1b12" stroke-width="2" fill="none"/></g>
+        <!-- cinnamon -->
+        <g transform="translate(70 360) rotate(-35)"><rect x="-6" y="-60" width="18" height="120" rx="9" fill="#8a4b26"/><rect x="-2" y="-58" width="10" height="116" rx="5" fill="#a65d31"/></g>
+      </svg>
+      <div class="chip c1"><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#dfe4d4"/><path d="M15 7c-5 4-6 9-2 15 1-6 3-9 7-11-2 0-4 0-5 2 0-2 0-4 0-6z" fill="#7f8f6d"/></svg><span><b>Свежая обжарка</b>каждую неделю</span></div>
+      <div class="chip c2"><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#f3dcc4"/><path d="M8 17c0-5 3-8 7-8s7 3 7 8H8zM7 18h16" stroke="#c8794a" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span><b>Круассаны</b>из печи к 8:00</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Спешелти-кофе</span><span>Домашняя выпечка</span><span>Завтраки весь день</span><span>Альтернативное молоко</span><span>Кофе с собой</span><span>Спешелти-кофе</span><span>Домашняя выпечка</span><span>Завтраки весь день</span><span>Альтернативное молоко</span><span>Кофе с собой</span>
+</div></div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Меню</span>
+      <h2>Что сегодня <em>в чашке</em></h2>
+      <p>Альтернативное молоко и сиропы — без доплаты. Всё можно взять с собой.</p>
+    </div>
+    <div class="tabs reveal" role="tablist">
+      <span class="pill"></span>
+      <button class="active" data-tab="coffee" role="tab">Кофе</button>
+      <button data-tab="dessert" role="tab">Десерты</button>
+      <button data-tab="breakfast" role="tab">Завтраки</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<section class="promos" id="promos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Акции</span>
+      <h2>Приятные <em>мелочи</em></h2>
+    </div>
+    <div class="promo-grid">
+      <div class="promo p1 reveal">
+        <div>
+          <span class="tag">Карта гостя</span>
+          <h3>Каждый шестой кофе — в подарок</h3>
+          <p>Копите штампы в приложении или на бумажной карте. Пять чашек — и шестая за наш счёт.</p>
+        </div>
+        <div class="stamps">
+          <i class="on"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></i>
+          <i class="on"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></i>
+          <i class="on"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></i>
+          <i></i><i></i>
+          <i class="gift"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="#e09a68" stroke-width="1.8"/><path d="M3 7h18v3H3zM12 7v13M12 7c-2-4-6-3-5 0M12 7c2-4 6-3 5 0" stroke="#e09a68" stroke-width="1.8" stroke-linejoin="round"/></svg></i>
+        </div>
+      </div>
+      <div class="promo p2 reveal">
+        <div>
+          <span class="tag">До 11:00</span>
+          <h3>Утренний комбо</h3>
+          <p>Капучино и круассан по специальной цене — успейте до работы.</p>
+        </div>
+        <div class="big">390 ₽</div>
+        <svg class="deco" width="150" height="150" viewBox="0 0 150 150" fill="none"><path d="M30 95c0-30 20-50 45-50s45 20 45 50" stroke="#fff" stroke-opacity=".35" stroke-width="10" stroke-linecap="round"/><path d="M45 92c0-18 14-32 30-32s30 14 30 32" stroke="#fff" stroke-opacity=".35" stroke-width="10" stroke-linecap="round"/></svg>
+      </div>
+      <div class="promo p3 reveal">
+        <div>
+          <span class="tag">Своя кружка</span>
+          <h3>−15% за свою кружку</h3>
+          <p>Приходите со своим термостаканом — бережём природу вместе.</p>
+        </div>
+        <div class="big">−15%</div>
+        <svg class="deco" width="140" height="160" viewBox="0 0 140 160" fill="none"><rect x="30" y="30" width="70" height="110" rx="14" fill="#7f8f6d" opacity=".35"/><rect x="24" y="20" width="82" height="20" rx="8" fill="#7f8f6d" opacity=".5"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-art reveal">
+      <svg viewBox="0 0 500 476" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="500" height="476" fill="#f0d6bb"/>
+        <!-- window -->
+        <rect x="60" y="50" width="200" height="230" rx="100" fill="#cfe0e3"/>
+        <path d="M160 50v230M60 170h200" stroke="#fffaf3" stroke-width="8"/>
+        <rect x="60" y="50" width="200" height="230" rx="100" fill="none" stroke="#fffaf3" stroke-width="10"/>
+        <circle cx="120" cy="110" r="18" fill="#fff" opacity=".6"/>
+        <!-- shelf -->
+        <rect x="300" y="110" width="160" height="10" rx="4" fill="#8a5a3a"/>
+        <rect x="312" y="66" width="34" height="44" rx="6" fill="#c8794a"/><rect x="352" y="76" width="30" height="34" rx="6" fill="#7f8f6d"/><rect x="390" y="60" width="26" height="50" rx="6" fill="#5a3e2e"/><circle cx="436" cy="96" r="14" fill="#e09a68"/>
+        <rect x="300" y="200" width="160" height="10" rx="4" fill="#8a5a3a"/>
+        <path d="M320 200v-30c0-10 30-10 30 0v30" fill="#fffaf3"/><path d="M370 200v-40h40v40" fill="#e9dccb"/><path d="M420 200l12-36 12 36z" fill="#7f8f6d"/>
+        <!-- plant -->
+        <path d="M70 330c-10-40 10-70 30-80M100 330c0-40 20-60 40-60M86 330c-20-30-40-30-50-26" stroke="#6b7b5a" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <ellipse cx="100" cy="250" rx="20" ry="10" transform="rotate(-40 100 250)" fill="#7f8f6d"/><ellipse cx="140" cy="270" rx="20" ry="10" transform="rotate(-10 140 270)" fill="#8fa07c"/><ellipse cx="36" cy="304" rx="18" ry="9" transform="rotate(20 36 304)" fill="#7f8f6d"/>
+        <path d="M66 330h68l-8 50H74z" fill="#c8794a"/>
+        <!-- counter -->
+        <rect x="0" y="380" width="500" height="96" fill="#5a3e2e"/>
+        <rect x="0" y="370" width="500" height="16" fill="#8a5a3a"/>
+        <!-- espresso machine -->
+        <g transform="translate(270 250)">
+          <rect x="0" y="0" width="190" height="120" rx="14" fill="#e9dccb"/>
+          <rect x="0" y="0" width="190" height="26" rx="12" fill="#c9b8a2"/>
+          <circle cx="50" cy="60" r="16" fill="#fffaf3" stroke="#8a7a68" stroke-width="3"/><path d="M50 60l8-6" stroke="#2e211a" stroke-width="2"/>
+          <circle cx="140" cy="60" r="16" fill="#fffaf3" stroke="#8a7a68" stroke-width="3"/><path d="M140 60l-6-8" stroke="#2e211a" stroke-width="2"/>
+          <rect x="70" y="86" width="50" height="10" rx="4" fill="#2e211a"/>
+          <rect x="82" y="104" width="26" height="16" rx="3" fill="#fffaf3"/>
+        </g>
+        <g transform="translate(120 330)"><path d="M0 0h50l-6 40H6z" fill="#fffaf3"/><path d="M50 10c14 0 14 20 0 20" stroke="#fffaf3" stroke-width="6" fill="none"/></g>
+      </svg>
+    </div>
+    <div class="reveal">
+      <span class="tag">О нас</span>
+      <h2>Маленькая кофейня с <em>большим</em> сердцем</h2>
+      <p>Мы открылись в 2019 году на первом этаже старого дома в центре. Хотели сделать место, куда приятно зайти и в минус тридцать, и в июльскую жару: с большими окнами, мягким светом и бариста, которые помнят ваш заказ.</p>
+      <p>Зерно закупаем у проверенных фермеров, обжариваем небольшими партиями прямо здесь. Десерты — по семейным рецептам нашего кондитера.</p>
+      <div class="nums">
+        <div><b>6</b><small>сортов зерна</small></div>
+        <div><b>40+</b><small>позиций в меню</small></div>
+        <div><b>2019</b><small>год открытия</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nfc" id="nfc">
+  <div class="wrap">
+    <div class="nfc-box reveal">
+      <div style="position:relative;z-index:1">
+        <span class="tag">Wi-Fi без паролей</span>
+        <h2 style="margin-top:16px">Приложи телефон <em style="color:var(--caramel2)">к столику</em></h2>
+        <p>На каждом столе — NFC-метка. Поднесите смартфон, и он сам подключится к Wi-Fi, откроет меню и карту гостя. Без QR-кодов и ввода паролей.</p>
+        <div class="wifi">
+          <div><small>Сеть</small><b>ZernoPar_Guest</b></div>
+          <div><small>Пароль</small><b id="pwd">kofe-0000</b><button class="copy" id="copyBtn">копировать</button></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <span class="wave"></span><span class="wave"></span><span class="wave"></span>
+        <svg width="150" height="270" viewBox="0 0 150 270" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="142" height="262" rx="28" fill="#1a120d" stroke="#5a3e2e" stroke-width="3"/>
+          <rect x="14" y="16" width="122" height="238" rx="20" fill="#fffaf3"/>
+          <rect x="55" y="22" width="40" height="8" rx="4" fill="#1a120d"/>
+          <circle cx="75" cy="100" r="34" fill="#f3dcc4"/>
+          <path d="M57 98a26 26 0 0 1 36 0M63 106a17 17 0 0 1 24 0M69 114a8 8 0 0 1 12 0" stroke="#c8794a" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="75" cy="121" r="3.5" fill="#c8794a"/>
+          <rect x="34" y="152" width="82" height="9" rx="4.5" fill="#2e211a"/>
+          <rect x="44" y="168" width="62" height="7" rx="3.5" fill="#d8c8b4"/>
+          <rect x="30" y="196" width="90" height="34" rx="17" fill="#7f8f6d"/>
+          <path d="M62 213l7 6 13-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Контакты</span>
+      <h2>Заходите <em>на чашку</em></h2>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-list reveal">
+        <div class="ct"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" stroke="#c8794a" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="#c8794a"/></svg></span><div><small>Адрес</small><b>Новосибирск, ул. Примерная, 00</b><div style="color:var(--muted);font-size:14px">Вход с угла дома, вывеска с чашкой</div></div></div>
+        <div class="ct"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c8794a" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#2e211a" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><small>Часы работы</small><b>Пн–Пт 7:30–22:00</b><div style="color:var(--muted);font-size:14px">Сб–Вс 9:00–22:00</div></div></div>
+        <div class="ct"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" stroke="#c8794a" stroke-width="1.8" stroke-linejoin="round"/></svg></span><div><small>Телефон для предзаказа</small><b><a href="tel:+73830000000">+7 (383) 000-00-00</a></b></div></div>
+        <div class="ct"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 4L3 11l6 2 2 6 3-4 5 4 2-15z" stroke="#c8794a" stroke-width="1.8" stroke-linejoin="round"/></svg></span><div><small>Telegram-канал</small><b>@zerno_i_par_demo</b></div></div>
+      </div>
+      <div class="mini-map reveal" role="img" aria-label="Схема расположения кофейни">
+        <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="420" fill="#efe6d8"/>
+          <g fill="#e5d8c5"><rect x="20" y="20" width="150" height="110" rx="10"/><rect x="200" y="20" width="180" height="110" rx="10"/><rect x="410" y="20" width="170" height="110" rx="10"/><rect x="20" y="170" width="150" height="100" rx="10"/><rect x="410" y="170" width="170" height="100" rx="10"/><rect x="20" y="310" width="150" height="100" rx="10"/><rect x="410" y="310" width="170" height="100" rx="10"/></g>
+          <rect x="200" y="170" width="180" height="240" rx="14" fill="#d9e2cb"/>
+          <circle cx="250" cy="230" r="16" fill="#c4d1b2"/><circle cx="330" cy="260" r="22" fill="#c4d1b2"/><circle cx="280" cy="330" r="18" fill="#c4d1b2"/><circle cx="345" cy="360" r="12" fill="#c4d1b2"/>
+          <path d="M215 390C260 330 320 300 365 190" stroke="#efe6d8" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M0 150h600M0 290h600M185 0v420M395 0v420" stroke="#fffaf3" stroke-width="16"/>
+          <g transform="translate(395 150)"><circle r="38" fill="#c8794a" opacity=".18"><animate attributeName="r" values="20;46;20" dur="3s" repeatCount="indefinite"/></circle><circle r="20" fill="#2e211a"/><path d="M-7-4h12l-1.5 9a3 3 0 0 1-3 2.5h-3a3 3 0 0 1-3-2.5zM5-2c4 0 4 5 0 5" stroke="#f7f0e6" stroke-width="2" fill="none"/></g>
+        </svg>
+        <div class="card"><b>Зерно и Пар</b><br><span style="color:var(--muted)">2 минуты от остановки «Демонстрационная»</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="logo">Зерно <i>и</i> Пар</span>
+    <span>© 2026 · Кофейня в Новосибирске</span>
+    <span class="demo">Демо-проект · разработка: Степан</span>
+  </div>
+</footer>
+
+<script>
+const ICONS={
+ cup:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 14h20l-2 16a4 4 0 0 1-4 3.5h-8A4 4 0 0 1 10 30z" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2"/><path d="M28 17c5 0 5 8 0 8" stroke="#5a3e2e" stroke-width="2"/><ellipse cx="18" cy="14" rx="10" ry="2.5" fill="#c8794a"/><path d="M14 9c-1-2 1-3 0-5M20 9c-1-2 1-3 0-5" stroke="#c8794a" stroke-width="1.6" stroke-linecap="round"/></svg>',
+ glass:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M11 8h18l-2.5 25h-13z" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2" stroke-linejoin="round"/><path d="M13 20h14l-1.3 12h-11.4z" fill="#c8794a"/><path d="M13 16h14" stroke="#e9dccb" stroke-width="4"/><path d="M22 4l-2 12" stroke="#7f8f6d" stroke-width="2" stroke-linecap="round"/></svg>',
+ small:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M11 17h16l-2 11a3 3 0 0 1-3 2.5h-6A3 3 0 0 1 13 28z" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2"/><ellipse cx="19" cy="17" rx="8" ry="2" fill="#4a2e1f"/><ellipse cx="19" cy="32" rx="12" ry="2.5" fill="#e9dccb"/></svg>',
+ raf:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M10 10h20l-2.5 22a3 3 0 0 1-3 2.5h-9a3 3 0 0 1-3-2.5z" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2"/><path d="M10 10c2-5 18-5 20 0" fill="#f3dcc4" stroke="#5a3e2e" stroke-width="2"/><path d="M12 19h16" stroke="#c8794a" stroke-width="3"/></svg>',
+ croissant:'<svg width="44" height="40" viewBox="0 0 44 40" fill="none"><path d="M4 26c2-10 10-16 18-16s16 6 18 16c-4 2-8 0-10-3-2 4-6 6-8 6s-6-2-8-6c-2 3-6 5-10 3z" fill="#e09a68" stroke="#8a4b26" stroke-width="2" stroke-linejoin="round"/><path d="M15 13l3 13M29 13l-3 13M22 10v18" stroke="#8a4b26" stroke-width="1.6"/></svg>',
+ cake:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M6 30V20l28-8v18z" fill="#f3dcc4" stroke="#5a3e2e" stroke-width="2" stroke-linejoin="round"/><path d="M6 24l28-6" stroke="#c8794a" stroke-width="3"/><path d="M6 20l28-8" stroke="#5a3e2e" stroke-width="2"/><circle cx="28" cy="10" r="3" fill="#b5413a"/><path d="M4 32h32" stroke="#5a3e2e" stroke-width="2" stroke-linecap="round"/></svg>',
+ cookie:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" fill="#e09a68" stroke="#8a4b26" stroke-width="2"/><circle cx="15" cy="16" r="2" fill="#4a2e1f"/><circle cx="24" cy="14" r="1.6" fill="#4a2e1f"/><circle cx="23" cy="24" r="2.2" fill="#4a2e1f"/><circle cx="15" cy="25" r="1.5" fill="#4a2e1f"/></svg>',
+ roll:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" fill="#f3dcc4" stroke="#8a4b26" stroke-width="2"/><path d="M20 20m-3 0a3 3 0 1 1 6 0a6 6 0 1 1-12 0a9 9 0 1 1 18 0" stroke="#a65d31" stroke-width="2" fill="none"/></svg>',
+ egg:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="21" rx="15" ry="12" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2"/><circle cx="20" cy="21" r="5.5" fill="#f2b33d"/><path d="M8 33h24" stroke="#e9dccb" stroke-width="3" stroke-linecap="round"/></svg>',
+ pancake:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="30" rx="15" ry="4" fill="#e9dccb"/><rect x="7" y="22" width="26" height="6" rx="3" fill="#e09a68" stroke="#8a4b26" stroke-width="1.6"/><rect x="8" y="16" width="24" height="6" rx="3" fill="#e09a68" stroke="#8a4b26" stroke-width="1.6"/><rect x="9" y="10" width="22" height="6" rx="3" fill="#e09a68" stroke="#8a4b26" stroke-width="1.6"/><path d="M16 10c0 4 2 6 4 9" stroke="#8a4b26" stroke-width="2"/><circle cx="25" cy="8" r="2.5" fill="#b5413a"/></svg>',
+ bowl:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M5 18h30a15 13 0 0 1-30 0z" fill="#fffaf3" stroke="#5a3e2e" stroke-width="2"/><circle cx="13" cy="16" r="3.5" fill="#b5413a"/><circle cx="20" cy="15" r="3" fill="#7f8f6d"/><circle cx="27" cy="16" r="3.5" fill="#f2b33d"/><circle cx="17" cy="12" r="2" fill="#5a3e2e"/></svg>',
+ toast:'<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 14a6 6 0 0 1 6-8h12a6 6 0 0 1 6 8v18H8z" fill="#e09a68" stroke="#8a4b26" stroke-width="2"/><path d="M12 15h16v14H12z" fill="#f3dcc4"/><ellipse cx="20" cy="22" rx="5" ry="4" fill="#7f8f6d"/></svg>'
+};
+const MENU={
+ coffee:[
+  ['cup','Капучино','Двойной эспрессо, бархатное молоко · 300 мл','220 ₽'],
+  ['cup','Флэт уайт','Больше кофе, меньше молока · 250 мл','240 ₽'],
+  ['raf','Раф «Облепиха»','Сливки, облепиха, ваниль · 350 мл','310 ₽',1],
+  ['small','Эспрессо','Бленд недели, плотный и сладкий','150 ₽'],
+  ['glass','Айс-латте','Эспрессо, молоко, лёд · 400 мл','260 ₽'],
+  ['cup','Фильтр-кофе','Моносорт дня, воронка V60','200 ₽']
+ ],
+ dessert:[
+  ['croissant','Круассан','Сливочное масло, 27 слоёв','160 ₽'],
+  ['cake','Медовик','Шесть коржей и сметанный крем','280 ₽'],
+  ['roll','Синнабон','Корица, сливочный сыр','230 ₽',1],
+  ['cookie','Печенье с шоколадом','Тёмный шоколад 70%','120 ₽'],
+  ['cake','Чизкейк «Сибирь»','С соусом из жимолости','300 ₽'],
+  ['croissant','Миндальный круассан','С франжипаном и лепестками','220 ₽']
+ ],
+ breakfast:[
+  ['egg','Яйцо пашот на бриоши','Голландез, шпинат, лосось','420 ₽'],
+  ['pancake','Сырники','Сметана и ягодный соус','340 ₽'],
+  ['bowl','Гранола-боул','Йогурт, ягоды, мёд, семена','330 ₽',1],
+  ['toast','Тост с авокадо','Цельнозерновой хлеб, яйцо','390 ₽'],
+  ['bowl','Овсянка','На молоке с карамельной грушей','260 ₽'],
+  ['egg','Шакшука','Томаты, перец, два яйца, лаваш','380 ₽']
+ ]
+};
+const grid=document.getElementById('menuGrid');
+function render(tab){
+  grid.innerHTML=MENU[tab].map((m,i)=>`<div class="item" style="animation-delay:${i*60}ms"><div class="pic">${ICONS[m[0]]}</div><div><h3>${m[1]}${m[4]?'<span class="new">новинка</span>':''}</h3><p>${m[2]}</p><span class="price">${m[3]}</span></div></div>`).join('');
+}
+const pill=document.querySelector('.tabs .pill');
+function movePill(b){pill.style.left=b.offsetLeft+'px';pill.style.width=b.offsetWidth+'px'}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');movePill(b);render(b.dataset.tab)}));
+render('coffee');
+const firstTab=document.querySelector('.tabs button.active');
+movePill(firstTab);
+addEventListener('load',()=>movePill(document.querySelector('.tabs button.active')));
+addEventListener('resize',()=>movePill(document.querySelector('.tabs button.active')));
+document.fonts&&document.fonts.ready.then(()=>movePill(document.querySelector('.tabs button.active')));
+
+const header=document.querySelector('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>10));
+document.querySelector('.burger').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+document.querySelectorAll('.nav ul a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
+
+document.getElementById('copyBtn').addEventListener('click',e=>{
+  const t=document.getElementById('pwd').textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(()=>{}).finally(()=>{e.target.textContent='скопировано ✓';setTimeout(()=>e.target.textContent='копировать',1800)});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шестерня — автосервис и шиномонтаж в Новосибирске</title>
+<meta name="description" content="Шестерня — автосервис и шиномонтаж в Новосибирске: ТО, диагностика, шиномонтаж, ремонт подвески. Демо-проект.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1430;--navy2:#111d42;--blue:#1d4ed8;--blue2:#3b6cff;--yellow:#ffc61a;--yellow2:#ffd75a;
+  --ink:#0d1324;--gray:#5d6680;--light:#f1f4fa;--line:#dfe4ef;--white:#fff;--r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:"Golos Text",system-ui,sans-serif;color:var(--ink);background:var(--white);font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Unbounded,sans-serif;line-height:1.12;letter-spacing:-.01em}
+h2{font-size:clamp(28px,3.8vw,46px);font-weight:700}
+section{padding:100px 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.kicker::before{content:"";width:22px;height:8px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 4px,var(--navy) 4px 8px);border-radius:2px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:48px;flex-wrap:wrap}
+.sec-head h2{margin-top:14px;max-width:640px}
+.sec-head p{color:var(--gray);max-width:380px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 28px;border-radius:12px;font-weight:600;font-size:15px;border:0;cursor:pointer;font-family:inherit;transition:.25s}
+.btn-y{background:var(--yellow);color:var(--navy);box-shadow:0 8px 0 -2px #c99600}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 10px 0 -2px #c99600}
+.btn-y:active{transform:translateY(3px);box-shadow:0 3px 0 -2px #c99600}
+.btn-o{border:2px solid rgba(255,255,255,.25);color:#fff;background:transparent}
+.btn-o:hover{border-color:var(--yellow);color:var(--yellow)}
+.btn-b{background:var(--blue);color:#fff}
+.btn-b:hover{background:var(--blue2)}
+
+/* header */
+.topbar{background:var(--navy);color:#aab4d4;font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;height:38px;align-items:center;gap:16px}
+.topbar b{color:#fff;font-weight:500}
+.topbar .open{display:flex;align-items:center;gap:8px}
+.topbar .open i{width:8px;height:8px;border-radius:50%;background:#2fd36b;box-shadow:0 0 0 4px rgba(47,211,107,.2)}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Unbounded;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.logo small{display:block;font-family:"Golos Text";font-weight:500;font-size:11px;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
+.nav ul{display:flex;gap:28px;list-style:none;font-weight:500;font-size:15px}
+.nav ul a:hover{color:var(--blue)}
+.nav .phone{font-weight:700;font-size:16px;white-space:nowrap}
+.nav-r{display:flex;align-items:center;gap:20px}
+.nav-r .btn{padding:12px 20px}
+.burger{display:none;width:44px;height:44px;border:0;border-radius:10px;background:var(--light);cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--navy);transition:.3s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:26px}
+.menu-open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+/* hero */
+.hero{background:radial-gradient(ellipse 60% 80% at 80% 30%,rgba(59,108,255,.35),transparent 60%),linear-gradient(160deg,var(--navy2),var(--navy) 60%);color:#fff;padding:80px 0 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,#000,transparent 85%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative}
+.hero .badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,198,26,.12);border:1px solid rgba(255,198,26,.35);color:var(--yellow);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.hero h1{font-size:clamp(36px,5.2vw,68px);font-weight:800;margin:24px 0 22px;text-transform:uppercase}
+.hero h1 span{color:var(--yellow)}
+.hero p.lead{color:#b9c3e3;font-size:18px;max-width:520px}
+.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.hero-feats{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap;color:#d6ddf3;font-size:14px}
+.hero-feats div{display:flex;align-items:center;gap:10px}
+.hero-art{position:relative;min-height:440px}
+.hero-art svg.car{position:absolute;left:-4%;right:-10%;bottom:40px;width:114%}
+.wheel{animation:spin 1.6s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-art .price-tag{position:absolute;top:30px;right:0;background:#fff;color:var(--navy);border-radius:16px;padding:16px 20px;box-shadow:0 24px 50px -20px rgba(0,0,0,.6);animation:float 5s ease-in-out infinite}
+.price-tag small{display:block;color:var(--gray);font-size:13px}
+.price-tag b{font-family:Unbounded;font-size:26px}
+.price-tag b em{font-style:normal;color:var(--blue)}
+@keyframes float{50%{transform:translateY(-10px)}}
+.hazard{height:18px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--navy) 18px 36px);position:relative}
+.stats{background:var(--navy);color:#fff;position:relative}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stats div.s{padding:34px 24px;border-left:1px solid rgba(255,255,255,.08)}
+.stats div.s:last-child{border-right:1px solid rgba(255,255,255,.08)}
+.stats b{font-family:Unbounded;font-size:34px;color:var(--yellow);display:block;line-height:1.1}
+.stats small{color:#9aa6cc;font-size:14px}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc{border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;position:relative;overflow:hidden;transition:.3s;background:#fff;display:flex;flex-direction:column}
+.svc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:.35s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 24px 40px -24px rgba(13,19,36,.35);border-color:transparent}
+.svc:hover::after{transform:scaleX(1)}
+.svc .ic{width:56px;height:56px;border-radius:14px;background:var(--light);display:grid;place-items:center;margin-bottom:22px;transition:.3s}
+.svc:hover .ic{background:var(--blue)}
+.svc:hover .ic svg *{stroke:#fff}
+.svc h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.svc p{color:var(--gray);font-size:14px;flex:1}
+.svc .pr{margin-top:18px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;align-items:center}
+.svc .pr small{color:var(--gray);font-weight:500;font-size:13px}
+.svc.hot{background:var(--navy);color:#fff;border-color:var(--navy)}
+.svc.hot p{color:#aab4d4}
+.svc.hot .ic{background:rgba(255,255,255,.08)}
+.svc.hot .pr small{color:#aab4d4}
+.svc .flag{position:absolute;top:18px;right:18px;background:var(--yellow);color:var(--navy);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+
+/* calc */
+.calc{background:var(--light)}
+.calc-box{display:grid;grid-template-columns:1.4fr .9fr;gap:24px}
+.panel{background:#fff;border-radius:22px;padding:36px;border:1px solid var(--line)}
+.panel h3{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.panel h3 i{font-style:normal;width:30px;height:30px;border-radius:8px;background:var(--navy);color:var(--yellow);display:grid;place-items:center;font-size:13px}
+.classes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:34px}
+.classes label{cursor:pointer}
+.classes input{position:absolute;opacity:0;pointer-events:none}
+.classes .opt{border:2px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;transition:.2s;height:100%}
+.classes .opt svg{margin:0 auto 8px}
+.classes .opt b{display:block;font-size:15px}
+.classes .opt small{color:var(--gray);font-size:12px}
+.classes input:checked+.opt{border-color:var(--blue);background:rgba(29,78,216,.05);box-shadow:0 0 0 4px rgba(29,78,216,.1)}
+.classes input:focus-visible+.opt{outline:2px solid var(--blue);outline-offset:2px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.checks label{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:.2s;user-select:none}
+.checks label:hover{border-color:var(--blue2)}
+.checks input{appearance:none;width:22px;height:22px;border-radius:7px;border:2px solid #c2c9da;flex:none;display:grid;place-items:center;transition:.2s;cursor:pointer}
+.checks input:checked{background:var(--blue);border-color:var(--blue)}
+.checks input:checked::after{content:"";width:10px;height:6px;border:2.5px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.checks label:has(input:checked){border-color:var(--blue);background:rgba(29,78,216,.04)}
+.checks span{flex:1;font-size:15px}
+.checks em{font-style:normal;color:var(--gray);font-size:14px;white-space:nowrap}
+.total{background:var(--navy);color:#fff;border-radius:22px;padding:36px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.total::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(255,198,26,.08)}
+.total small{color:#9aa6cc;font-size:14px}
+.total .sum{font-family:Unbounded;font-size:clamp(38px,4vw,52px);font-weight:800;color:var(--yellow);margin:6px 0 4px;line-height:1.1}
+.total ul{list-style:none;margin:24px 0;display:grid;gap:10px;font-size:14px;color:#cdd5ef;flex:1;align-content:start;min-height:80px}
+.total li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed rgba(255,255,255,.12);padding-bottom:8px}
+.total .empty{color:#7d89b0}
+.total .note{font-size:12px;color:#7d89b0;margin-top:14px}
+.total .time{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.07);padding:6px 12px;border-radius:999px;font-size:13px;color:#cdd5ef;width:max-content}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{position:relative;padding:30px 26px;border-radius:var(--r);background:var(--light)}
+.step .n{font-family:Unbounded;font-size:56px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:2px var(--blue);opacity:.9}
+.step h3{font-size:17px;margin:20px 0 8px}
+.step p{color:var(--gray);font-size:14px}
+.step:not(:last-child)::after{content:"";position:absolute;top:52px;right:-16px;width:12px;height:12px;border-top:3px solid var(--yellow);border-right:3px solid var(--yellow);transform:rotate(45deg);z-index:1}
+
+/* guarantee */
+.guar{background:linear-gradient(120deg,var(--blue),#1638a8);color:#fff;border-radius:28px;padding:60px;display:grid;grid-template-columns:auto 1fr auto;gap:50px;align-items:center;position:relative;overflow:hidden}
+.guar::after{content:"";position:absolute;right:0;top:0;bottom:0;width:30%;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.04) 0 20px,transparent 20px 40px)}
+.guar h2{color:#fff}
+.guar p{color:#c9d5ff;margin-top:12px;max-width:520px}
+.guar-list{display:grid;gap:12px;position:relative;z-index:1}
+.guar-list div{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.1);padding:14px 18px;border-radius:12px;font-weight:500;white-space:nowrap}
+.shield{position:relative;z-index:1}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.faq-side{position:sticky;top:120px}
+.faq-side p{color:var(--gray);margin:16px 0 26px}
+.acc{border-bottom:1px solid var(--line)}
+.acc button{width:100%;background:none;border:0;text-align:left;font:inherit;font-weight:600;font-size:18px;padding:24px 50px 24px 0;cursor:pointer;position:relative;color:var(--ink)}
+.acc button::after,.acc button::before{content:"";position:absolute;right:8px;top:50%;width:18px;height:2.5px;background:var(--blue);border-radius:2px;transition:.3s}
+.acc button::before{transform:rotate(90deg)}
+.acc.open button::before{transform:rotate(0)}
+.acc .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}
+.acc.open .ans{grid-template-rows:1fr}
+.acc .ans>div{overflow:hidden}
+.acc .ans p{color:var(--gray);padding-bottom:24px;max-width:640px}
+
+/* form */
+.book{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.book::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 100% 0%,rgba(59,108,255,.35),transparent 60%)}
+.book-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;position:relative}
+.book h2{color:#fff}
+.book .info p{color:#aab4d4;margin:16px 0 30px;max-width:440px}
+.contacts{display:grid;gap:14px}
+.contacts div{display:flex;gap:14px;align-items:center}
+.contacts .ic{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.07);display:grid;place-items:center;flex:none}
+.contacts small{display:block;color:#7d89b0;font-size:13px}
+.contacts b{font-weight:600}
+form.f{background:#fff;color:var(--ink);border-radius:22px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:13px;font-weight:500;color:var(--gray)}
+.fld input,.fld select,.fld textarea{border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;font:inherit;font-size:15px;background:var(--light);transition:.2s;width:100%;color:var(--ink)}
+.fld textarea{resize:vertical;min-height:84px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(29,78,216,.1)}
+.fld .err{border-color:#e5484d}
+form.f .btn{grid-column:1/-1}
+form.f .agree{grid-column:1/-1;font-size:12px;color:var(--gray);text-align:center}
+.ok{position:absolute;inset:0;background:#fff;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:36px;opacity:0;pointer-events:none;transform:scale(.97);transition:.4s}
+.ok.show{opacity:1;pointer-events:auto;transform:none}
+.ok .circle{width:84px;height:84px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;margin-bottom:20px}
+.ok h3{font-size:24px;margin-bottom:8px}
+.ok p{color:var(--gray);max-width:360px}
+
+footer{background:#070e22;color:#7d89b0;font-size:14px;padding:30px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .demo{font-size:12px;opacity:.7}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2)::after{display:none}
+  .guar{grid-template-columns:1fr;gap:30px;padding:44px}
+  .nav ul{gap:20px}
+  .nav .phone{display:none}
+}
+@media (max-width:900px){
+  .nav ul,.nav-r .btn{display:none}
+  .burger{display:block}
+  .menu-open .nav ul{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:#fff;padding:6px 24px 20px;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
+  .menu-open .nav ul a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:18px}
+  .nav .phone{display:block;font-size:15px}
+  .hero-grid,.calc-box,.faq-grid,.book-grid{grid-template-columns:1fr}
+  .hero-art{min-height:300px}
+  .faq-side{position:static}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stats div.s{border:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+}
+@media (max-width:560px){
+  section{padding:72px 0}
+  .wrap{padding:0 16px}
+  .topbar .addr{display:none}
+  .nav .phone{display:none}
+  .hero{padding-top:50px}
+  .hero p.lead{font-size:16px}
+  .hero-cta .btn{width:100%}
+  .hero-art{min-height:270px}
+  .hero-art .wrench{display:none}
+  .svc{padding:22px 20px}
+  .svc .ic{width:46px;height:46px;margin-bottom:14px}
+  .svc .pr{margin-top:12px}
+  .hero-art svg.car{bottom:20px;left:-6%;width:112%}
+  .hero-art .price-tag{top:0;right:auto;left:0;padding:12px 14px}
+  .price-tag b{font-size:20px}
+  .stats div.s{padding:22px 4px}
+  .stats b{font-size:24px}
+  .stats small{font-size:12.5px;display:block;line-height:1.35}
+  .svc-grid,.steps{grid-template-columns:1fr}
+  .step::after{display:none}
+  .classes{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .classes .opt{padding:12px 4px}
+  .classes .opt b{font-size:13px}
+  .classes .opt small{font-size:11px}
+  .classes .opt svg{width:52px}
+  .checks{grid-template-columns:1fr}
+  .panel,.total{padding:24px 18px}
+  .guar{padding:32px 22px;border-radius:22px}
+  .guar-list div{white-space:normal}
+  .acc button{font-size:16px}
+  form.f{grid-template-columns:1fr;padding:24px 18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span class="open"><i></i>Открыто · ежедневно 8:00–21:00</span>
+  <span class="addr">Новосибирск, ул. Промышленная-демо, 00, бокс 4</span>
+</div></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#1d4ed8"/><g transform="translate(20 20)"><path d="M-2.2-13h4.4l.8 3.2 3 1.3 2.9-1.7 3.1 3.1-1.7 2.9 1.3 3 3.2.8v4.4l-3.2.8-1.3 3 1.7 2.9-3.1 3.1-2.9-1.7-3 1.3-.8 3.2h-4.4l-.8-3.2-3-1.3-2.9 1.7-3.1-3.1 1.7-2.9-1.3-3-3.2-.8v-4.4l3.2-.8 1.3-3-1.7-2.9 3.1-3.1 2.9 1.7 3-1.3z" fill="#ffc61a"/><circle r="4.5" fill="#1d4ed8"/></g></svg>
+      <span>ШЕСТЕРНЯ<small>автосервис · шиномонтаж</small></span>
+    </a>
+    <ul>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#calc">Калькулятор</a></li>
+      <li><a href="#how">Как работаем</a></li>
+      <li><a href="#faq">Вопросы</a></li>
+      <li><a href="#book">Контакты</a></li>
+    </ul>
+    <div class="nav-r">
+      <a class="phone" href="tel:+73830000000">+7 (383) 000-00-00</a>
+      <a href="#book" class="btn btn-y">Записаться</a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4.4 4.8.5-3.6 3.2 1 4.7L8 11.4 3.8 13.8l1-4.7L1.2 5.9 6 5.4z" fill="#ffc61a"/></svg>Сезонная замена шин — без очередей</span>
+      <h1>Ремонт и ТО <span>без сюрпризов</span> в чеке</h1>
+      <p class="lead">Фиксируем цену до начала работ, показываем замену запчастей на видео и даём гарантию до 12 месяцев. Легковые, кроссоверы и внедорожники.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn btn-y">Записаться на ТО
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#calc" class="btn btn-o">Рассчитать стоимость</a>
+      </div>
+      <div class="hero-feats">
+        <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ffc61a" stroke-width="1.8"/><path d="M6 10l3 3 5-6" stroke="#ffc61a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Диагностика 0 ₽ при ремонте</div>
+        <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ffc61a" stroke-width="1.8"/><path d="M6 10l3 3 5-6" stroke="#ffc61a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Зона ожидания с кофе</div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="price-tag"><small>Шиномонтаж R16 от</small><b><em>2 400</em> ₽</b></div>
+      <svg class="car" viewBox="0 0 640 300" fill="none">
+        <defs>
+          <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b6cff"/><stop offset="1" stop-color="#1638a8"/></linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bcd0ff"/><stop offset="1" stop-color="#5d7fd6"/></linearGradient>
+          <radialGradient id="shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+        </defs>
+        <!-- speed lines -->
+        <g stroke="#ffc61a" stroke-linecap="round" opacity=".7"><path d="M10 150h70" stroke-width="4"/><path d="M30 180h50" stroke-width="3"/><path d="M0 210h60" stroke-width="3"/></g>
+        <ellipse cx="350" cy="262" rx="270" ry="22" fill="url(#shadow)"/>
+        <!-- body -->
+        <path d="M110 220c-14 0-22-8-22-22v-26c0-16 10-26 26-30l70-14 66-52c12-9 26-14 42-14h132c18 0 32 6 44 18l46 48 62 10c20 4 32 18 32 38v22c0 14-8 22-22 22z" fill="url(#body)"/>
+        <path d="M262 84l-52 44h128V74h-50c-10 0-18 3-26 10z" fill="url(#glass)"/>
+        <path d="M354 74v54h122l-38-40c-8-9-18-14-30-14z" fill="url(#glass)"/>
+        <path d="M200 140h380" stroke="#0a1430" stroke-opacity=".25" stroke-width="2"/>
+        <path d="M346 74v146" stroke="#0a1430" stroke-opacity=".25" stroke-width="2"/>
+        <rect x="300" y="150" width="28" height="6" rx="3" fill="#0a1430" opacity=".4"/><rect x="440" y="150" width="28" height="6" rx="3" fill="#0a1430" opacity=".4"/>
+        <path d="M584 160h28c6 0 10 6 8 12l-2 6h-30z" fill="#ffd75a"/>
+        <path d="M92 168h22v18H90z" fill="#ff5a4e"/>
+        <path d="M120 196h470" stroke="#ffc61a" stroke-width="5"/>
+        <!-- wheels -->
+        <g transform="translate(190 222)"><circle r="46" fill="#0a1430"/><circle r="40" fill="#1a2240"/><g class="wheel"><circle r="24" fill="#c7cfe6"/><g stroke="#0a1430" stroke-width="5" stroke-linecap="round"><path d="M0-20V20M-20 0H20M-14-14L14 14M14-14L-14 14"/></g><circle r="7" fill="#ffc61a"/></g></g>
+        <g transform="translate(500 222)"><circle r="46" fill="#0a1430"/><circle r="40" fill="#1a2240"/><g class="wheel"><circle r="24" fill="#c7cfe6"/><g stroke="#0a1430" stroke-width="5" stroke-linecap="round"><path d="M0-20V20M-20 0H20M-14-14L14 14M14-14L-14 14"/></g><circle r="7" fill="#ffc61a"/></g></g>
+        <!-- wrench badge -->
+        <g class="wrench" transform="translate(120 70)"><circle r="34" fill="#ffc61a"/><path d="M-12 14l16-16a10 10 0 0 0 12-13l-6 6-6-2-2-6 6-6a10 10 0 0 0-13 12l-16 16a4 4 0 0 0 9 9z" fill="#0a1430"/></g>
+      </svg>
+    </div>
+  </div>
+  <div class="hazard" style="margin-top:20px"></div>
+  <div class="stats"><div class="wrap">
+    <div class="s"><b>11 лет</b><small>на рынке Новосибирска</small></div>
+    <div class="s"><b>6 постов</b><small>и 2 линии шиномонтажа</small></div>
+    <div class="s"><b>27 000</b><small>обслуженных автомобилей</small></div>
+    <div class="s"><b>12 мес.</b><small>гарантия на работы</small></div>
+  </div></div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Услуги</span><h2>Всё для вашего авто в одном боксе</h2></div>
+      <p>Цены указаны за работу для легкового автомобиля. Запчасти — свои или наши, на выбор.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc hot reveal"><span class="flag">Хит</span><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="12" stroke="#ffc61a" stroke-width="2.2"/><circle cx="15" cy="15" r="5" stroke="#ffc61a" stroke-width="2.2"/><path d="M15 3v7M15 20v7M3 15h7M20 15h7" stroke="#ffc61a" stroke-width="2.2"/></svg></div><h3>Шиномонтаж</h3><p>Снятие, монтаж, балансировка 4 колёс. Хранение шин.</p><div class="pr">от 2 400 ₽ <small>~40 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M10 6h10v4l3 3v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V13l3-3z" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/><path d="M11 18c2-3 6-3 8 0" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/></svg></div><h3>Замена масла</h3><p>Масло и фильтр, сброс сервисного интервала.</p><div class="pr">от 900 ₽ <small>~30 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="4" y="7" width="22" height="15" rx="2" stroke="#1d4ed8" stroke-width="2.2"/><path d="M8 17l4-4 3 3 6-6M10 26h10" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Компьютерная диагностика</h3><p>Считываем ошибки всех блоков, отчёт на руки.</p><div class="pr">от 1 200 ₽ <small>~30 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 4v6M15 20v6" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/><path d="M10 10h10l-2 10h-6z" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/><path d="M8 13c-3 1-3 5 0 6M22 13c3 1 3 5 0 6" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/></svg></div><h3>Ремонт подвески</h3><p>Амортизаторы, рычаги, сайлентблоки, ступицы.</p><div class="pr">от 1 500 ₽ <small>от 1 ч</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="11" stroke="#1d4ed8" stroke-width="2.2"/><circle cx="15" cy="15" r="4" stroke="#1d4ed8" stroke-width="2.2"/><path d="M22 6l3-2M8 6L5 4" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/></svg></div><h3>Тормозная система</h3><p>Колодки, диски, замена тормозной жидкости.</p><div class="pr">от 1 100 ₽ <small>~45 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M4 15h22M9 9l-5 6 5 6M21 9l5 6-5 6" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Развал-схождение</h3><p>3D-стенд, распечатка параметров до и после.</p><div class="pr">от 1 800 ₽ <small>~50 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 3v24M5 9l20 12M25 9L5 21" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/></svg></div><h3>Заправка кондиционера</h3><p>Проверка на утечки, вакуумирование, фреон.</p><div class="pr">от 1 900 ₽ <small>~40 мин</small></div></div>
+      <div class="svc reveal"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="5" y="9" width="20" height="14" rx="2" stroke="#1d4ed8" stroke-width="2.2"/><path d="M10 9V6M20 9V6M11 16h3M18 14v4M16 16h4" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round"/></svg></div><h3>Автоэлектрика</h3><p>АКБ, генератор, стартер, проводка, свет.</p><div class="pr">от 800 ₽ <small>от 30 мин</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="calc" id="calc">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Калькулятор</span><h2>Посчитайте стоимость за минуту</h2></div>
+      <p>Выберите класс автомобиля и нужные работы — итог обновится мгновенно.</p>
+    </div>
+    <div class="calc-box reveal">
+      <div class="panel">
+        <h3><i>1</i>Класс автомобиля</h3>
+        <div class="classes">
+          <label><input type="radio" name="cls" value="1" checked><div class="opt"><svg width="64" height="30" viewBox="0 0 64 30" fill="none"><path d="M4 22v-5c0-2 1-3 3-3.5l8-1.5 7-6c1.5-1 3-1.5 5-1.5h12c2 0 3.5.7 5 2l5 5 7 1c2 .5 3 2 3 4V22z" fill="#1d4ed8"/><circle cx="17" cy="23" r="5" fill="#0a1430"/><circle cx="48" cy="23" r="5" fill="#0a1430"/></svg><b>Легковой</b><small>седан, хэтчбек</small></div></label>
+          <label><input type="radio" name="cls" value="1.2"><div class="opt"><svg width="64" height="30" viewBox="0 0 64 30" fill="none"><path d="M3 21v-6c0-2 1-3 3-3.5l8-1 6-6c1-1 3-1.5 5-1.5h16c2 0 3 .5 4 1.5l6 6 6 1c2 .5 3 2 3 4V21z" fill="#1d4ed8"/><circle cx="16" cy="22" r="6" fill="#0a1430"/><circle cx="48" cy="22" r="6" fill="#0a1430"/></svg><b>Кроссовер</b><small>+20% к работам</small></div></label>
+          <label><input type="radio" name="cls" value="1.4"><div class="opt"><svg width="64" height="30" viewBox="0 0 64 30" fill="none"><path d="M3 21V8c0-2 1-4 4-4h36c2 0 3 1 4 2l6 6 5 1c2 .5 3 2 3 4V21z" fill="#1d4ed8"/><circle cx="16" cy="22" r="6.5" fill="#0a1430"/><circle cx="47" cy="22" r="6.5" fill="#0a1430"/></svg><b>Внедорожник</b><small>+40% к работам</small></div></label>
+        </div>
+        <h3><i>2</i>Работы</h3>
+        <div class="checks" id="checks"></div>
+      </div>
+      <div class="total">
+        <small>Предварительная стоимость</small>
+        <div class="sum"><span id="sum">0</span> ₽</div>
+        <span class="time"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#ffc61a" stroke-width="1.6"/><path d="M7 4v3l2 1.5" stroke="#ffc61a" stroke-width="1.6" stroke-linecap="round"/></svg><span id="time">выберите работы</span></span>
+        <ul id="lines"><li class="empty">Пока ничего не выбрано</li></ul>
+        <a href="#book" class="btn btn-y" id="toForm">Записаться с этим расчётом</a>
+        <p class="note">Точную стоимость мастер подтвердит после осмотра. Запчасти оплачиваются отдельно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Как мы работаем</span><h2>Четыре шага без лишних звонков</h2></div>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3>Заявка</h3><p>Онлайн или по телефону. Подберём удобное время в течение 15 минут.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3>Осмотр и смета</h3><p>Диагностируем, называем фиксированную цену и согласуем с вами.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3>Ремонт</h3><p>Фото и видео процесса — в мессенджер. Старые детали отдаём вам.</p></div>
+      <div class="step reveal"><div class="n">04</div><h3>Выдача</h3><p>Тест-драйв с мастером, заказ-наряд и гарантийный талон.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="guar reveal">
+      <svg class="shield" width="120" height="140" viewBox="0 0 120 140" fill="none" aria-hidden="true"><path d="M60 4l50 18v40c0 34-22 60-50 74C32 122 10 96 10 62V22z" fill="#ffc61a"/><path d="M60 18l36 13v31c0 25-15 45-36 56-21-11-36-31-36-56V31z" fill="#0a1430"/><text x="60" y="78" text-anchor="middle" font-family="Unbounded" font-weight="800" font-size="34" fill="#ffc61a">12</text><text x="60" y="98" text-anchor="middle" font-family="Golos Text" font-weight="600" font-size="12" fill="#fff" letter-spacing="2">МЕСЯЦЕВ</text></svg>
+      <div style="position:relative;z-index:1"><span class="kicker" style="color:#ffc61a">Гарантия</span><h2 style="margin-top:12px">Отвечаем за каждую гайку</h2><p>Гарантия до 12 месяцев или 20 000 км на работы и на запчасти, купленные у нас. Если что-то пошло не так — исправим бесплатно и вне очереди.</p></div>
+      <div class="guar-list">
+        <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#ffc61a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Фиксированная смета</div>
+        <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#ffc61a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Оригинал и аналоги на выбор</div>
+        <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#ffc61a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Сохраняем гарантию дилера</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:var(--light)">
+  <div class="wrap faq-grid">
+    <div class="faq-side reveal">
+      <span class="kicker">FAQ</span>
+      <h2 style="margin-top:14px">Частые вопросы</h2>
+      <p>Не нашли ответ? Позвоните — мастер-приёмщик подскажет бесплатно.</p>
+      <a href="tel:+73830000000" class="btn btn-b">+7 (383) 000-00-00</a>
+    </div>
+    <div class="reveal" id="acc">
+      <div class="acc open"><button>Можно ли привезти свои запчасти?</button><div class="ans"><div><p>Да, конечно. Мы установим ваши детали, но гарантия в этом случае распространяется только на работы. На запчасти из нашего склада — полная гарантия.</p></div></div></div>
+      <div class="acc"><button>Сохранится ли гарантия дилера после ТО у вас?</button><div class="ans"><div><p>Да. Мы используем допущенные расходники, ставим отметку в сервисной книжке и выдаём заказ-наряд с номерами деталей — этого достаточно для сохранения гарантии.</p></div></div></div>
+      <div class="acc"><button>Сколько времени занимает плановое ТО?</button><div class="ans"><div><p>Обычно от 1 до 2 часов в зависимости от регламента. Можно подождать в зоне отдыха с кофе и Wi-Fi или оставить машину и забрать вечером.</p></div></div></div>
+      <div class="acc"><button>Есть ли хранение шин?</button><div class="ans"><div><p>Да, отапливаемый склад. Хранение комплекта — от 2 500 ₽ за сезон, мойка колёс и упаковка включены.</p></div></div></div>
+      <div class="acc"><button>Как оплатить?</button><div class="ans"><div><p>Наличными, картой, по QR-коду через СБП или по безналу для юрлиц — работаем с автопарками по договору.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div class="info reveal">
+      <span class="kicker" style="color:#ffc61a">Запись</span>
+      <h2 style="margin-top:14px">Записаться на ТО</h2>
+      <p>Оставьте заявку — перезвоним в течение 15 минут, подтвердим время и примерную стоимость.</p>
+      <div class="contacts">
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" stroke="#ffc61a" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span><small>Телефон</small><b>+7 (383) 000-00-00</b></span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" stroke="#ffc61a" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="#ffc61a"/></svg></span><span><small>Адрес</small><b>Новосибирск, ул. Промышленная-демо, 00, бокс 4</b></span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#ffc61a" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#ffc61a" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><small>Режим работы</small><b>Ежедневно 8:00 — 21:00</b></span></div>
+      </div>
+    </div>
+    <form class="f reveal" id="form" novalidate>
+      <div class="fld"><label for="fn">Имя</label><input id="fn" placeholder="Иван"></div>
+      <div class="fld"><label for="fp">Телефон</label><input id="fp" type="tel" placeholder="+7 (___) ___-__-__"></div>
+      <div class="fld"><label for="fc">Марка и модель</label><input id="fc" placeholder="Например, Lada Vesta"></div>
+      <div class="fld"><label for="fd">Желаемая дата</label><input id="fd" type="date"></div>
+      <div class="fld full"><label for="fs">Услуга</label><select id="fs"><option>Плановое ТО</option><option>Шиномонтаж</option><option>Диагностика</option><option>Ремонт подвески</option><option>Тормозная система</option><option>Другое</option></select></div>
+      <div class="fld full"><label for="fm">Комментарий</label><textarea id="fm" placeholder="Опишите, что беспокоит"></textarea></div>
+      <button class="btn btn-y" type="submit">Отправить заявку</button>
+      <p class="agree">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+      <div class="ok" id="ok">
+        <div class="circle"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M10 21l7 7 14-15" stroke="#0a1430" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Заявка принята!</h3>
+        <p id="okText">Мастер-приёмщик перезвонит в течение 15 минут.</p>
+        <button type="button" class="btn btn-b" id="okBack" style="margin-top:22px">Отправить ещё</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 «Шестерня» — автосервис и шиномонтаж, Новосибирск</span>
+    <span class="demo">Демо-проект · разработка: Степан</span>
+  </div>
+</footer>
+
+<script>
+// calculator
+const WORKS=[
+  ['Шиномонтаж (4 колеса)',2400,40],['Замена масла и фильтра',900,30],
+  ['Компьютерная диагностика',1200,30],['Развал-схождение',1800,50],
+  ['Замена колодок (ось)',1100,45],['Заправка кондиционера',1900,40],
+  ['Замена свечей',700,30],['Замена салонного фильтра',400,15]
+];
+const checks=document.getElementById('checks');
+checks.innerHTML=WORKS.map((w,i)=>`<label><input type="checkbox" value="${i}" ${i<2?'checked':''}><span>${w[0]}</span><em data-base="${w[1]}">${w[1].toLocaleString('ru-RU')} ₽</em></label>`).join('');
+const sumEl=document.getElementById('sum'),linesEl=document.getElementById('lines'),timeEl=document.getElementById('time');
+let shown=0,anim;
+const fmt=n=>Math.round(n).toLocaleString('ru-RU');
+const round50=n=>Math.round(n/50)*50;
+function calc(){
+  const k=+document.querySelector('input[name=cls]:checked').value;
+  document.querySelectorAll('#checks em').forEach(e=>e.textContent=fmt(round50(e.dataset.base*k))+' ₽');
+  const sel=[...checks.querySelectorAll('input:checked')].map(i=>WORKS[i.value]);
+  let total=0,mins=0;
+  linesEl.innerHTML=sel.length?sel.map(w=>{const p=round50(w[1]*k);total+=p;mins+=w[2];return `<li><span>${w[0]}</span><b>${fmt(p)} ₽</b></li>`}).join(''):'<li class="empty">Пока ничего не выбрано</li>';
+  if(sel.length>2){const d=round50(total*.05);total-=d;linesEl.innerHTML+=`<li style="color:#ffc61a"><span>Скидка за комплекс −5%</span><b>−${fmt(d)} ₽</b></li>`}
+  timeEl.textContent=sel.length?`≈ ${mins>=60?Math.floor(mins/60)+' ч '+(mins%60?mins%60+' мин':''):mins+' мин'}`:'выберите работы';
+  const from=shown,to=total,t0=performance.now();cancelAnimationFrame(anim);
+  const step=t=>{const p=Math.min(1,(t-t0)/450);shown=from+(to-from)*(1-Math.pow(1-p,3));sumEl.textContent=fmt(shown);if(p<1)anim=requestAnimationFrame(step)};
+  anim=requestAnimationFrame(step);
+  return {sel,total};
+}
+document.getElementById('calc').addEventListener('change',calc);
+calc();sumEl.textContent=fmt(shown=calc().total);
+document.getElementById('toForm').addEventListener('click',()=>{
+  const {sel,total}=calc();if(!sel.length)return;
+  const cls=document.querySelector('input[name=cls]:checked').closest('label').querySelector('b').textContent;
+  document.getElementById('fm').value=`Расчёт с сайта (${cls}): ${sel.map(w=>w[0]).join(', ')} — ${fmt(total)} ₽`;
+});
+
+// faq
+document.querySelectorAll('.acc button').forEach(b=>b.addEventListener('click',()=>{
+  const a=b.parentElement,open=a.classList.contains('open');
+  document.querySelectorAll('.acc').forEach(x=>x.classList.remove('open'));
+  if(!open)a.classList.add('open');
+}));
+
+// menu
+document.querySelector('.burger').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+document.querySelectorAll('.nav ul a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+
+// form
+const fp=document.getElementById('fp'),fd=document.getElementById('fd');
+{const t=new Date();fd.min=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);}
+fp.addEventListener('input',()=>{let v=fp.value.replace(/\D/g,'');if(v.startsWith('8'))v='7'+v.slice(1);if(!v.startsWith('7'))v='7'+v;v=v.slice(0,11);
+  let r='+7';if(v.length>1)r+=' ('+v.slice(1,4);if(v.length>=4)r+=')';if(v.length>4)r+=' '+v.slice(4,7);if(v.length>7)r+='-'+v.slice(7,9);if(v.length>9)r+='-'+v.slice(9,11);fp.value=r});
+const form=document.getElementById('form');
+form.addEventListener('submit',e=>{e.preventDefault();
+  const fn=document.getElementById('fn');let ok=true;
+  [fn,fp].forEach(i=>i.classList.remove('err'));
+  if(fn.value.trim().length<2){fn.classList.add('err');ok=false}
+  if(fp.value.replace(/\D/g,'').length<11){fp.classList.add('err');ok=false}
+  if(!ok)return;
+  const car=document.getElementById('fc').value.trim();
+  document.getElementById('okText').textContent=`${fn.value.trim()}, мы получили заявку на «${document.getElementById('fs').value}»${car?' для '+car:''}. Перезвоним в течение 15 минут.`;
+  document.getElementById('ok').classList.add('show');
+});
+document.getElementById('okBack').addEventListener('click',()=>{form.reset();document.getElementById('ok').classList.remove('show')});
+</script>
+</body>
+</html>

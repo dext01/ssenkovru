@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бритва·54 — барбершоп в Новосибирске</title>
+<meta name="description" content="Бритва·54 — мужские стрижки, бритьё и уход за бородой в Новосибирске. Демо-проект.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0c0b;--bg2:#141210;--card:#1a1815;--line:#2b2722;
+  --gold:#c9a45c;--gold2:#e6c88a;--text:#ece6dc;--muted:#9a9186;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.1}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+section{padding:110px 0}
+.sec-head{margin-bottom:56px;max-width:640px}
+.sec-head h2{font-size:clamp(34px,4.5vw,52px);margin-top:14px}
+.sec-head p{color:var(--muted);margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--gold);transition:.3s;cursor:pointer;font-family:inherit}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a140a;border-color:transparent;box-shadow:0 10px 30px -10px rgba(201,164,92,.6)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(201,164,92,.8)}
+.btn-ghost{color:var(--text);background:transparent;border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(13,12,11,.82);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:12px;font-family:"Playfair Display",serif;font-size:22px;font-weight:700}
+.logo span{color:var(--gold)}
+.nav ul{display:flex;gap:34px;list-style:none;font-size:15px}
+.nav ul a{color:var(--muted);transition:.2s}
+.nav ul a:hover{color:var(--gold)}
+.nav .btn{padding:11px 22px}
+.burger{display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:9px;right:9px;height:2px;background:var(--text);transition:.3s}
+.burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:26px}
+.menu-open .burger span:nth-child(1){top:20px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+/* hero */
+.hero{min-height:min(100vh,960px);display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 60% 70% at 78% 40%,rgba(201,164,92,.16),transparent 70%),radial-gradient(ellipse 40% 50% at 10% 90%,rgba(201,164,92,.07),transparent 70%),var(--bg)}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(44px,6.4vw,88px);margin:22px 0 24px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--gold)}
+.hero p.lead{color:var(--muted);font-size:18px;max-width:500px}
+.hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:44px;margin-top:56px;padding-top:30px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-stats b{display:block;font-family:"Playfair Display",serif;font-size:36px;color:var(--gold2);font-weight:500}
+.hero-stats small{color:var(--muted);font-size:13px}
+.hero-art{position:relative;aspect-ratio:1/1.1;max-width:480px;justify-self:end;width:100%}
+.hero-art .frame{position:absolute;inset:0;border-radius:240px 240px 24px 24px;background:linear-gradient(160deg,#211d18,#0f0e0c);border:1px solid var(--line);overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.hero-art .frame::before{content:"";position:absolute;inset:14px;border-radius:226px 226px 14px 14px;border:1px solid rgba(201,164,92,.35)}
+.hero-art .frame svg{position:absolute;inset:0;width:100%;height:100%}
+.badge{position:absolute;left:-30px;bottom:60px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 40px -15px rgba(0,0,0,.7);animation:float 5s ease-in-out infinite}
+.badge .stars{color:var(--gold);letter-spacing:2px;font-size:14px}
+.badge b{font-size:22px;font-family:"Playfair Display",serif}
+.badge small{display:block;color:var(--muted);font-size:12px}
+@keyframes float{50%{transform:translateY(-10px)}}
+.rotate{animation:spin 30s linear infinite;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* services */
+.services{background:var(--bg2)}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 70px}
+.svc{display:flex;align-items:baseline;gap:16px;padding:26px 0;border-bottom:1px solid var(--line);transition:.3s}
+.svc:hover{padding-left:10px}
+.svc:hover h3{color:var(--gold)}
+.svc h3{font-size:22px;font-weight:500;transition:.3s;white-space:nowrap}
+.svc .dots{flex:1;border-bottom:1px dashed #3a352e;transform:translateY(-6px);min-width:20px}
+.svc .price{font-family:"Playfair Display",serif;font-size:22px;color:var(--gold2);white-space:nowrap}
+.svc p{color:var(--muted);font-size:14px;margin-top:4px}
+.svc-body{display:flex;flex-direction:column;min-width:0}
+.svc-row{display:flex;align-items:baseline;gap:16px}
+.svc-note{margin-top:40px;color:var(--muted);font-size:14px;display:flex;gap:10px;align-items:center}
+
+/* masters */
+.masters-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.master{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px 26px;text-align:center;transition:.4s;position:relative;overflow:hidden}
+.master::before{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;background:radial-gradient(circle,rgba(201,164,92,.18),transparent 70%);opacity:0;transition:.4s}
+.master:hover{transform:translateY(-6px);border-color:rgba(201,164,92,.5)}
+.master:hover::before{opacity:1}
+.avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 22px;position:relative;display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:40px;color:var(--gold2)}
+.avatar::before{content:"";position:absolute;inset:0;border-radius:50%;padding:2px;background:conic-gradient(from 180deg,var(--gold),transparent 40%,var(--gold2) 70%,var(--gold));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.avatar i{position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#3a3128,#16130f)}
+.avatar span{position:relative}
+.master h3{font-size:22px}
+.master .role{color:var(--gold);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:6px 0 14px}
+.master p{color:var(--muted);font-size:14px}
+.master .exp{display:inline-block;margin-top:18px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted)}
+
+/* gallery */
+.gallery{background:var(--bg2)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:18px}
+.tile{border-radius:var(--r);overflow:hidden;position:relative;border:1px solid var(--line);background:#16130f}
+.tile svg{width:100%;height:100%;transition:transform .8s}
+.tile:hover svg{transform:scale(1.06)}
+.tile figcaption{position:absolute;left:18px;bottom:16px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);background:rgba(13,12,11,.6);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.t1{grid-column:span 2;grid-row:span 2}
+.t4{grid-column:span 2}
+
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px;position:relative;transition:.3s}
+.review:hover{border-color:rgba(201,164,92,.4)}
+.review .q{font-family:"Playfair Display",serif;font-size:80px;line-height:.6;color:var(--gold);opacity:.35;height:36px}
+.review p{font-size:16px;margin:10px 0 26px}
+.review .who{display:flex;gap:14px;align-items:center;padding-top:20px;border-top:1px solid var(--line)}
+.review .ini{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#3a3128,#1d1915);display:grid;place-items:center;color:var(--gold2);font-weight:700;font-size:15px}
+.review .who small{display:block;color:var(--muted);font-size:13px}
+.review .stars{color:var(--gold);letter-spacing:3px;font-size:13px}
+
+/* booking */
+.booking{position:relative;background:radial-gradient(ellipse 50% 80% at 0% 50%,rgba(201,164,92,.12),transparent 70%),var(--bg2)}
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}
+.book-info ul{list-style:none;margin-top:30px;display:grid;gap:16px}
+.book-info li{display:flex;gap:14px;align-items:center;color:var(--muted)}
+.book-info li svg{flex:none}
+form.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative;min-height:440px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:var(--muted);letter-spacing:.04em}
+.field input,.field select{background:#0f0e0c;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--text);font:inherit;font-size:15px;transition:.2s;width:100%;color-scheme:dark}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,164,92,.15)}
+.field input.err{border-color:#c0614f}
+form .btn{grid-column:1/-1;justify-content:center;margin-top:8px}
+form .agree{grid-column:1/-1;font-size:12px;color:var(--muted);text-align:center}
+.success{position:absolute;inset:0;border-radius:24px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;opacity:0;pointer-events:none;transition:.5s}
+.success.show{opacity:1;pointer-events:auto}
+.success .check{width:84px;height:84px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;margin-bottom:24px}
+.success .check path{stroke-dasharray:40;stroke-dashoffset:40}
+.success.show .check path{animation:draw .6s .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.success h3{font-size:30px;margin-bottom:10px}
+.success p{color:var(--muted);max-width:340px}
+
+/* contacts */
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px}
+.c-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:38px;display:grid;gap:26px;align-content:start}
+.c-item small{display:block;color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.c-item b{font-size:18px;font-weight:600}
+.c-item .hours{display:grid;grid-template-columns:auto auto;gap:4px 24px;font-size:15px;justify-content:start}
+.socials{display:flex;gap:10px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.3s}
+.socials a:hover{border-color:var(--gold);background:rgba(201,164,92,.1)}
+.map{border-radius:var(--r);border:1px solid var(--line);position:relative;overflow:hidden;min-height:420px;background:#171511}
+.map .streets{position:absolute;inset:-20%;transform:rotate(-12deg);
+  background:
+   linear-gradient(90deg,transparent 0 calc(32% - 9px),#24211c calc(32% - 9px) calc(32% + 9px),transparent 0),
+   linear-gradient(0deg,transparent 0 calc(55% - 12px),#26221d calc(55% - 12px) calc(55% + 12px),transparent 0),
+   linear-gradient(90deg,transparent 0 calc(70% - 5px),#211e19 calc(70% - 5px) calc(70% + 5px),transparent 0),
+   linear-gradient(0deg,transparent 0 calc(25% - 5px),#211e19 calc(25% - 5px) calc(25% + 5px),transparent 0),
+   repeating-linear-gradient(90deg,transparent 0 58px,#1d1a16 58px 61px),
+   repeating-linear-gradient(0deg,transparent 0 58px,#1d1a16 58px 61px)}
+.map .river{position:absolute;left:-10%;right:-10%;bottom:-6%;height:34%;background:linear-gradient(180deg,#1a2226,#151c1f);border-radius:50% 50% 0 0/40% 40% 0 0;transform:rotate(-6deg)}
+.map .park{position:absolute;left:12%;top:14%;width:18%;height:22%;background:#1b1f17;border-radius:14px;transform:rotate(-12deg)}
+.map .pin{position:absolute;left:52%;top:44%;transform:translate(-50%,-100%)}
+.map .pin svg{filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))}
+.map .pulse{position:absolute;left:52%;top:44%;width:18px;height:18px;margin:-9px;border-radius:50%;background:rgba(201,164,92,.5);animation:pulse 2s infinite}
+@keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(5);opacity:0}}
+.map .label{position:absolute;left:52%;top:44%;transform:translate(26px,-64px);background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:12px;font-size:13px;white-space:nowrap}
+.map .label b{color:var(--gold2)}
+.map .zoom{position:absolute;right:16px;top:16px;display:grid;gap:6px}
+.map .zoom span{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:18px}
+.map .route{position:absolute;left:18px;bottom:18px}
+
+footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer .demo{font-size:12px;opacity:.6}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1024px){
+  .masters-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .t4{grid-column:span 2}
+  .rev-grid{grid-template-columns:1fr}
+  .book-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+}
+@media (max-width:860px){
+  .nav ul,.nav>.btn{display:none}
+  .burger{display:block}
+  .menu-open .nav ul{display:flex;position:fixed;top:76px;left:0;right:0;flex-direction:column;gap:0;background:rgba(13,12,11,.97);border-bottom:1px solid var(--line);padding:10px 24px 24px}
+  .menu-open .nav ul a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:18px;color:var(--text)}
+  .menu-open header{background:rgba(13,12,11,.97)}
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .hero-art{justify-self:center;max-width:360px}
+  .svc-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  section{padding:80px 0}
+  .wrap{padding:0 18px}
+  .hero{padding-top:110px}
+  .hero p.lead{font-size:16px}
+  .hero-stats{gap:28px}
+  .hero-stats b{font-size:26px}
+  .hero-stats small{font-size:12px;line-height:1.3;display:block}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{justify-content:center}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:12px}
+  .badge{left:-6px;bottom:30px;padding:12px 16px}
+  .masters-grid{grid-template-columns:1fr}
+  .gal-grid{grid-auto-rows:170px;gap:12px}
+  .t1{grid-column:span 2;grid-row:span 2}
+  .svc h3{font-size:18px;white-space:normal}
+  .svc .price{font-size:19px}
+  form.card{grid-template-columns:1fr;padding:26px 20px}
+  .c-card{padding:28px 22px}
+  .map{min-height:320px}
+  .map .label{transform:translate(-50%,-128px)}
+  .map .pin,.map .pulse,.map .label{left:50%;top:58%}
+  .review{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo" aria-label="Бритва·54">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" stroke="#c9a45c"/><path d="M10 23 L24 9" stroke="#e6c88a" stroke-width="2" stroke-linecap="round"/><path d="M12 9c3 0 5 2 5 5" stroke="#c9a45c" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="23" r="2" fill="#c9a45c"/></svg>
+      <b style="font-weight:700">Бритва<span>·</span>54</b>
+    </a>
+    <ul>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#masters">Мастера</a></li>
+      <li><a href="#gallery">Атмосфера</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <a href="#booking" class="btn btn-gold">Записаться</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Барбершоп · Новосибирск</span>
+      <h1>Стрижка, после которой <em>хочется</em> вернуться</h1>
+      <p class="lead">Классические и современные мужские стрижки, королевское бритьё горячим полотенцем и уход за бородой. Без спешки — с чашкой кофе и хорошей музыкой.</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn btn-gold">Записаться онлайн
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#services" class="btn btn-ghost">Цены</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>8 лет</b><small>работаем в городе</small></div>
+        <div><b>12 000+</b><small>довольных гостей</small></div>
+        <div><b>4.9</b><small>средняя оценка</small></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="frame">
+        <svg viewBox="0 0 400 440" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d9a4"/><stop offset="1" stop-color="#9c7a3c"/></linearGradient>
+            <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d6a66"/><stop offset=".5" stop-color="#dcd8d0"/><stop offset="1" stop-color="#7a7671"/></linearGradient>
+            <radialGradient id="glow" cx=".5" cy=".45" r=".5"><stop offset="0" stop-color="#c9a45c" stop-opacity=".35"/><stop offset="1" stop-color="#c9a45c" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="190" fill="url(#glow)"/>
+          <g class="rotate" style="transform-origin:200px 210px">
+            <circle cx="200" cy="210" r="150" stroke="#c9a45c" stroke-opacity=".25" stroke-dasharray="2 10"/>
+          </g>
+          <circle cx="200" cy="210" r="118" stroke="#c9a45c" stroke-opacity=".4"/>
+          <!-- straight razor -->
+          <g transform="translate(200 210) rotate(-35)">
+            <rect x="-150" y="-14" width="150" height="28" rx="14" fill="#1f1a14" stroke="url(#g1)" stroke-width="2"/>
+            <circle cx="-136" cy="0" r="4" fill="url(#g1)"/>
+            <circle cx="-10" cy="0" r="5" fill="url(#g1)"/>
+            <path d="M-6 -16 L130 -16 Q150 -16 150 4 L150 10 Q150 22 132 22 L20 22 Q-6 22 -6 6 Z" fill="url(#steel)"/>
+            <path d="M-6 16 L132 22" stroke="#fff" stroke-opacity=".7" stroke-width="1.5"/>
+            <path d="M10 -6 L120 -6" stroke="#000" stroke-opacity=".15" stroke-width="6" stroke-linecap="round"/>
+          </g>
+          <!-- comb -->
+          <g transform="translate(205 300) rotate(12)" opacity=".9">
+            <rect x="-80" y="-10" width="160" height="16" rx="4" fill="url(#g1)"/>
+            <g fill="url(#g1)">
+              <rect x="-76" y="4" width="4" height="26" rx="2"/><rect x="-66" y="4" width="4" height="26" rx="2"/><rect x="-56" y="4" width="4" height="26" rx="2"/><rect x="-46" y="4" width="4" height="26" rx="2"/><rect x="-36" y="4" width="4" height="26" rx="2"/><rect x="-26" y="4" width="4" height="26" rx="2"/><rect x="-16" y="4" width="4" height="26" rx="2"/><rect x="-6" y="4" width="4" height="26" rx="2"/><rect x="4" y="4" width="4" height="20" rx="2"/><rect x="14" y="4" width="4" height="20" rx="2"/><rect x="24" y="4" width="4" height="20" rx="2"/><rect x="34" y="4" width="4" height="20" rx="2"/><rect x="44" y="4" width="4" height="20" rx="2"/><rect x="54" y="4" width="4" height="20" rx="2"/><rect x="64" y="4" width="4" height="20" rx="2"/><rect x="72" y="4" width="4" height="20" rx="2"/>
+            </g>
+          </g>
+          <text x="200" y="96" text-anchor="middle" fill="#c9a45c" font-family="Playfair Display,serif" font-size="14" letter-spacing="6">EST · 2018</text>
+          <g fill="#c9a45c"><path d="M120 400h160" stroke="#c9a45c" stroke-opacity=".4"/></g>
+          <text x="200" y="420" text-anchor="middle" fill="#9a9186" font-family="Manrope,sans-serif" font-size="11" letter-spacing="5">GENTLEMEN · BARBERS</text>
+        </svg>
+      </div>
+      <div class="badge">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#c9a45c" stroke-opacity=".5"/><path d="M20 10l3 6.5 7 .8-5.2 4.8 1.4 7L20 25.6 13.8 29l1.4-7L10 17.3l7-.8z" fill="#c9a45c"/></svg>
+        <div><b>4.9</b> <span class="stars">★★★★★</span><small>по 860 отзывам</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Прайс</span>
+      <h2>Услуги и цены</h2>
+      <p>Каждая услуга включает консультацию, мытьё головы и укладку профессиональной косметикой.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Мужская стрижка</h3><span class="dots"></span><span class="price">1 800 ₽</span></div><p>Машинка и ножницы, укладка · 60 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Стрижка + борода</h3><span class="dots"></span><span class="price">2 900 ₽</span></div><p>Комплекс со скидкой · 90 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Моделирование бороды</h3><span class="dots"></span><span class="price">1 300 ₽</span></div><p>Форма, контур, масло для бороды · 40 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Королевское бритьё</h3><span class="dots"></span><span class="price">1 600 ₽</span></div><p>Опасная бритва, горячее полотенце · 45 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Стрижка машинкой</h3><span class="dots"></span><span class="price">1 100 ₽</span></div><p>Одна-две насадки · 30 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Детская стрижка</h3><span class="dots"></span><span class="price">1 200 ₽</span></div><p>Для юных джентльменов до 12 лет · 40 мин</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Камуфляж седины</h3><span class="dots"></span><span class="price">1 400 ₽</span></div><p>Естественный оттенок без эффекта краски</p></div></div>
+      <div class="svc"><div class="svc-body" style="flex:1"><div class="svc-row"><h3>Отец + сын</h3><span class="dots"></span><span class="price">2 700 ₽</span></div><p>Две стрижки в одно время</p></div></div>
+    </div>
+    <p class="svc-note"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#c9a45c"/><path d="M9 5v5M9 12.5v.5" stroke="#c9a45c" stroke-width="1.6" stroke-linecap="round"/></svg>Цены у топ-барбера выше на 20%. Первое посещение — скидка 15%.</p>
+  </div>
+</section>
+
+<section id="masters">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Команда</span>
+      <h2>Наши мастера</h2>
+      <p>Четыре барбера с разным почерком — подберём того, кто поймёт вас с полуслова.</p>
+    </div>
+    <div class="masters-grid">
+      <div class="master reveal"><div class="avatar"><i></i><span>АК</span></div><h3>Артём К.</h3><div class="role">Топ-барбер</div><p>Классика, fade любой сложности и аккуратные бороды.</p><span class="exp">Опыт 9 лет</span></div>
+      <div class="master reveal"><div class="avatar"><i></i><span>ДВ</span></div><h3>Денис В.</h3><div class="role">Барбер</div><p>Текстурные стрижки, кроп и всё, что в тренде.</p><span class="exp">Опыт 5 лет</span></div>
+      <div class="master reveal"><div class="avatar"><i></i><span>МС</span></div><h3>Михаил С.</h3><div class="role">Мастер бритья</div><p>Королевское бритьё опасной бритвой — его конёк.</p><span class="exp">Опыт 7 лет</span></div>
+      <div class="master reveal"><div class="avatar"><i></i><span>ИЛ</span></div><h3>Илья Л.</h3><div class="role">Барбер</div><p>Спокойный, внимательный, любит сложные задачи.</p><span class="exp">Опыт 4 года</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Атмосфера</span>
+      <h2>Место, где время замедляется</h2>
+      <p>Кожаные кресла, тёплый свет, винил и запах хорошего табака в одеколонах.</p>
+    </div>
+    <div class="gal-grid reveal">
+      <figure class="tile t1">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="a1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2219"/><stop offset="1" stop-color="#0f0d0b"/></linearGradient><radialGradient id="lamp" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="#e6c88a" stop-opacity=".45"/><stop offset="1" stop-color="#e6c88a" stop-opacity="0"/></radialGradient><linearGradient id="leather" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b3b22"/><stop offset="1" stop-color="#2d170c"/></linearGradient></defs>
+          <rect width="400" height="400" fill="url(#a1)"/><rect width="400" height="400" fill="url(#lamp)"/>
+          <path d="M200 0v60" stroke="#c9a45c" stroke-opacity=".5"/><path d="M175 60h50l-10 22h-30z" fill="#c9a45c"/><ellipse cx="200" cy="84" rx="16" ry="4" fill="#fff5d8"/>
+          <rect x="0" y="330" width="400" height="70" fill="#14110e"/>
+          <g transform="translate(200 250)">
+            <rect x="-70" y="-110" width="140" height="120" rx="26" fill="url(#leather)"/>
+            <rect x="-62" y="-102" width="124" height="104" rx="20" fill="none" stroke="#000" stroke-opacity=".25" stroke-dasharray="3 5"/>
+            <rect x="-90" y="0" width="180" height="40" rx="14" fill="url(#leather)"/>
+            <rect x="-104" y="-30" width="22" height="70" rx="10" fill="#4a2817"/><rect x="82" y="-30" width="22" height="70" rx="10" fill="#4a2817"/>
+            <rect x="-6" y="40" width="12" height="40" fill="#8f8a83"/><ellipse cx="0" cy="84" rx="56" ry="8" fill="#8f8a83"/>
+          </g>
+          <g transform="translate(330 150)"><rect x="-14" y="-60" width="28" height="140" rx="14" fill="#efe9de"/><clipPath id="cp"><rect x="-14" y="-60" width="28" height="140" rx="14"/></clipPath><g clip-path="url(#cp)"><g class="pole"><path d="M-40 -120 l80 40 v14 l-80 -40z M-40 -80 l80 40 v14 l-80 -40z M-40 -40 l80 40 v14 l-80 -40z M-40 0 l80 40 v14 l-80 -40z M-40 40 l80 40 v14 l-80 -40z M-40 80 l80 40 v14 l-80 -40z" fill="#a8322a"/></g></g><rect x="-18" y="-72" width="36" height="14" rx="6" fill="#c9a45c"/><rect x="-18" y="76" width="36" height="14" rx="6" fill="#c9a45c"/></g>
+        </svg>
+        <figcaption>Зал</figcaption>
+      </figure>
+      <figure class="tile">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice"><rect width="300" height="300" fill="#1a1612"/><circle cx="150" cy="150" r="120" fill="#c9a45c" opacity=".08"/>
+          <g transform="translate(150 150) rotate(-30)" stroke="url(#g1)" stroke-width="5" fill="none"><circle cx="-40" cy="60" r="20"/><circle cx="40" cy="60" r="20"/><path d="M-28 44 L20 -90 M28 44 L-20 -90" stroke-linecap="round"/></g><circle cx="150" cy="150" r="5" fill="#e6c88a"/></svg>
+        <figcaption>Ножницы</figcaption>
+      </figure>
+      <figure class="tile">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice"><rect width="300" height="300" fill="#15120f"/>
+          <g transform="translate(150 160)"><rect x="-36" y="-50" width="72" height="120" rx="12" fill="#2c2620" stroke="#c9a45c" stroke-opacity=".6"/><rect x="-14" y="-82" width="28" height="34" rx="4" fill="#c9a45c"/><rect x="-24" y="-10" width="48" height="50" rx="4" fill="#efe6d4"/><text x="0" y="12" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#2c2620">BEARD</text><text x="0" y="28" text-anchor="middle" font-family="Manrope" font-size="8" fill="#6b5a43">OIL · 30ml</text></g>
+          <g transform="translate(230 200)" opacity=".8"><rect x="-16" y="-30" width="32" height="60" rx="16" fill="#3a2f22"/><rect x="-8" y="-42" width="16" height="14" rx="3" fill="#c9a45c"/></g></svg>
+        <figcaption>Косметика</figcaption>
+      </figure>
+      <figure class="tile t4">
+        <svg viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="vin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#231d17"/><stop offset="1" stop-color="#0e0c0a"/></linearGradient></defs><rect width="600" height="300" fill="url(#vin)"/>
+          <g class="rotate" style="transform-origin:200px 150px"><circle cx="200" cy="150" r="110" fill="#0a0908"/><circle cx="200" cy="150" r="96" fill="none" stroke="#1f1b17" stroke-width="2"/><circle cx="200" cy="150" r="80" fill="none" stroke="#1f1b17" stroke-width="2"/><circle cx="200" cy="150" r="64" fill="none" stroke="#1f1b17" stroke-width="2"/><circle cx="200" cy="150" r="36" fill="#c9a45c"/><circle cx="200" cy="150" r="4" fill="#0a0908"/><path d="M130 80 A100 100 0 0 1 200 50" stroke="#fff" stroke-opacity=".15" stroke-width="6" fill="none"/></g>
+          <path d="M360 40 L300 140" stroke="#bbb" stroke-width="4" stroke-linecap="round"/><circle cx="360" cy="40" r="12" fill="#555"/>
+          <text x="420" y="140" font-family="Playfair Display,serif" font-size="36" fill="#ece6dc" font-style="italic">Jazz</text><text x="420" y="176" font-family="Manrope" font-size="13" fill="#9a9186" letter-spacing="4">ПО ПЯТНИЦАМ</text></svg>
+        <figcaption>Винил и джаз</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Отзывы</span>
+      <h2>Говорят гости</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="review reveal"><div class="q">“</div><p>Хожу к Артёму третий год. Ни разу не было такого, чтобы ушёл недовольным. Fade — идеальный, борода — как с обложки.</p><div class="who"><div class="ini">ПН</div><div><b>Павел Н.</b><small>гость с 2023</small></div><span class="stars" style="margin-left:auto">★★★★★</span></div></div>
+      <div class="review reveal"><div class="q">“</div><p>Подарил отцу королевское бритьё — он в восторге. Атмосфера как в старом кино, кофе отличный, никто никуда не торопит.</p><div class="who"><div class="ini">АР</div><div><b>Алексей Р.</b><small>новый гость</small></div><span class="stars" style="margin-left:auto">★★★★★</span></div></div>
+      <div class="review reveal"><div class="q">“</div><p>Удобная онлайн-запись, пришёл минута в минуту — сразу посадили. Денис предложил форму, о которой я сам бы не подумал. Огонь.</p><div class="who"><div class="ini">ЕМ</div><div><b>Егор М.</b><small>гость с 2024</small></div><span class="stars" style="margin-left:auto">★★★★★</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap book-grid">
+    <div class="book-info reveal">
+      <span class="eyebrow">Онлайн-запись</span>
+      <h2 style="font-size:clamp(34px,4.5vw,52px);margin-top:14px">Забронируйте время</h2>
+      <p style="color:var(--muted);margin-top:14px">Оставьте заявку — администратор перезвонит в течение 10 минут и подтвердит запись.</p>
+      <ul>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#c9a45c"/><path d="M7 11l3 3 5-6" stroke="#c9a45c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Напомним о визите за 2 часа</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#c9a45c"/><path d="M7 11l3 3 5-6" stroke="#c9a45c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Бесплатная отмена за 3 часа</li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#c9a45c"/><path d="M7 11l3 3 5-6" stroke="#c9a45c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Кофе, чай или лимонад — за наш счёт</li>
+      </ul>
+    </div>
+    <form class="card reveal" id="bookForm" novalidate>
+      <div class="field"><label for="name">Ваше имя</label><input id="name" required placeholder="Как к вам обращаться"></div>
+      <div class="field"><label for="phone">Телефон</label><input id="phone" type="tel" required placeholder="+7 (___) ___-__-__"></div>
+      <div class="field"><label for="svc">Услуга</label><select id="svc"><option>Мужская стрижка</option><option>Стрижка + борода</option><option>Моделирование бороды</option><option>Королевское бритьё</option><option>Детская стрижка</option></select></div>
+      <div class="field"><label for="mst">Мастер</label><select id="mst"><option>Любой свободный</option><option>Артём К.</option><option>Денис В.</option><option>Михаил С.</option><option>Илья Л.</option></select></div>
+      <div class="field"><label for="date">Дата</label><input id="date" type="date" required></div>
+      <div class="field"><label for="time">Время</label><select id="time"></select></div>
+      <button class="btn btn-gold" type="submit">Отправить заявку</button>
+      <p class="agree">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+      <div class="success" id="success">
+        <div class="check"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M10 21l7 7 14-15" stroke="#e6c88a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Вы записаны!</h3>
+        <p id="successText">Мы перезвоним в течение 10 минут, чтобы подтвердить визит.</p>
+        <button type="button" class="btn btn-ghost" id="again" style="margin-top:24px">Новая запись</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Контакты</span>
+      <h2>Ждём в гости</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="c-card reveal">
+        <div class="c-item"><small>Адрес</small><b>г. Новосибирск, ул. Демонстрационная, 00</b><div style="color:var(--muted);font-size:14px;margin-top:4px">5 минут от метро, вход со двора</div></div>
+        <div class="c-item"><small>Телефон</small><b><a href="tel:+73830000000">+7 (383) 000-00-00</a></b></div>
+        <div class="c-item"><small>Часы работы</small><div class="hours"><span>Пн — Пт</span><span>10:00 — 22:00</span><span>Сб — Вс</span><span>10:00 — 21:00</span></div></div>
+        <div class="c-item"><small>Соцсети</small>
+          <div class="socials">
+            <a href="#" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 4L3 11l6 2 2 6 3-4 5 4 2-15z" stroke="#c9a45c" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 13l8-6" stroke="#c9a45c" stroke-width="1.6"/></svg></a>
+            <a href="#" aria-label="ВКонтакте"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#c9a45c" stroke-width="1.6"/><path d="M7 9c.5 3 2.5 6 5.5 6V12c1 0 2.3 1 3 3M17 9c-.5 1.5-2 3-4.5 3" stroke="#c9a45c" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+            <a href="#" aria-label="Телефон"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" stroke="#c9a45c" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <a href="#booking" class="btn btn-gold" style="justify-content:center">Записаться</a>
+      </div>
+      <div class="map reveal" role="img" aria-label="Схема проезда">
+        <div class="streets"></div><div class="park"></div><div class="river"></div>
+        <div class="pulse"></div>
+        <div class="pin"><svg width="44" height="56" viewBox="0 0 44 56"><path d="M22 0C10 0 0 9.6 0 21.5 0 37 22 56 22 56s22-19 22-34.5C44 9.6 34 0 22 0z" fill="#c9a45c"/><circle cx="22" cy="21" r="8" fill="#0d0c0b"/></svg></div>
+        <div class="label"><b>Бритва·54</b><br><span style="color:var(--muted)">ул. Демонстрационная, 00</span></div>
+        <div class="zoom"><span>+</span><span>−</span></div>
+        <a class="btn btn-ghost route" href="#" style="background:var(--card);padding:10px 18px;font-size:14px">Построить маршрут</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Бритва·54. Барбершоп в Новосибирске</span>
+    <span class="demo">Демо-проект · разработка: Степан</span>
+  </div>
+</footer>
+
+<script>
+const header=document.querySelector('header');
+const onScroll=()=>header.classList.toggle('scrolled',scrollY>20);
+addEventListener('scroll',onScroll);onScroll();
+document.querySelector('.burger').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+document.querySelectorAll('.nav ul a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*80+'ms';io.observe(el)});
+
+// time slots
+const t=document.getElementById('time');
+for(let h=10;h<=21;h++){for(const m of ['00','30']){if(h===21&&m==='30')continue;const o=document.createElement('option');o.textContent=h+':'+m;t.appendChild(o)}}
+const d=document.getElementById('date');
+const today=new Date();d.min=new Date(today-today.getTimezoneOffset()*6e4).toISOString().slice(0,10);d.value=d.min;
+
+// phone mask
+const ph=document.getElementById('phone');
+ph.addEventListener('input',()=>{let v=ph.value.replace(/\D/g,'');if(v.startsWith('8'))v='7'+v.slice(1);if(!v.startsWith('7'))v='7'+v;v=v.slice(0,11);
+  let r='+7';if(v.length>1)r+=' ('+v.slice(1,4);if(v.length>=4)r+=')';if(v.length>4)r+=' '+v.slice(4,7);if(v.length>7)r+='-'+v.slice(7,9);if(v.length>9)r+='-'+v.slice(9,11);ph.value=r});
+
+const form=document.getElementById('bookForm');
+form.addEventListener('submit',e=>{e.preventDefault();let ok=true;
+  const n=document.getElementById('name');
+  [n,ph].forEach(i=>i.classList.remove('err'));
+  if(n.value.trim().length<2){n.classList.add('err');ok=false}
+  if(ph.value.replace(/\D/g,'').length<11){ph.classList.add('err');ok=false}
+  if(!ok)return;
+  const dt=new Date(d.value).toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+  document.getElementById('successText').textContent=`${n.value.trim()}, ждём вас ${dt} в ${t.value}. Мастер: ${document.getElementById('mst').value.toLowerCase()==='любой свободный'?'любой свободный':document.getElementById('mst').value}. Перезвоним для подтверждения.`;
+  document.getElementById('success').classList.add('show')});
+document.getElementById('again').addEventListener('click',()=>{form.reset();d.value=d.min;document.getElementById('success').classList.remove('show')});
+</script>
+</body>
+</html>
